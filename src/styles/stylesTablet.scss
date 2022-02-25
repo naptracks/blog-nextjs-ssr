@@ -1,0 +1,23 @@
+/* Styles for tablet screen: from 1250px */
+
+@media (min-width: 810px) {
+
+
+  /**************** UI ****************/
+
+  /* Navbar.js */
+
+  .fake-links-container {
+    margin: auto;
+    width: 50%;
+    height: 4rem;
+  }
+  .fake-link {
+    margin: auto;
+  }
+  .fake-link:hover {
+    cursor: pointer;
+  }
+
+
+}

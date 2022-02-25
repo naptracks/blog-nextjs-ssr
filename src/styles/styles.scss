@@ -1,0 +1,80 @@
+
+/**************** AUTH ****************/
+
+/* Login.js */
+.login-box {
+  width: 25rem;
+  height: 28rem;
+  border: solid 2px var(--lightgray-color);
+}
+
+
+/**************** LAYOUT ****************/
+
+/* Container.js */
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  min-height: calc(100vh - 12.5rem);
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 950px;
+}
+
+
+
+/**************** PAGES ****************/
+
+
+/**************** UI ****************/
+
+/* Navbar.js */
+
+.navbar-container {
+  width: 100%;
+}
+.navbar {
+  height: 8.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6rem;
+  border-bottom: solid 1px var(--lightgray-color) ;
+}
+
+
+.left-side-navbar-container {
+  display: none;
+}
+
+.logo-container {
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container h4, img {
+  cursor: pointer;
+}
+
+.right-side-navbar-container {
+  display: none;
+}
+
+.fake-links-container {
+  display: none;
+}
+
+
+/* Footer.js */
+
+.footer {
+  width: 100%;
+  height: 25rem;
+  border-top: solid 1px darkgray;
+}

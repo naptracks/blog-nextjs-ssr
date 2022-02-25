@@ -1,0 +1,45 @@
+/* Styles for desktop screen: from 1250px */
+
+@media (min-width: 1250px) {
+
+
+  /**************** UI ****************/
+
+  /* Navbar.js */
+
+  .left-side-navbar-container {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .left-side-navbar-container img {
+    margin-right: 1.5rem;
+  }
+
+  .logo-container {
+    min-width: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-container h4 {
+    display: none;
+  }
+
+  .right-side-navbar-container {
+    display: flex;
+    width: 25%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .right-side-navbar-container img {
+    margin-left: 2rem;
+  }
+
+  .right-side-navbar-container h4 {
+    margin-right: 2rem;
+  }
+
+}
