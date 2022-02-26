@@ -10,11 +10,9 @@ export default function Home() {
 
   return (
       <Fragment>
-          <main>
               <Layout>
                   <Login/>
               </Layout>
-          </main>
       </Fragment>
 
   )

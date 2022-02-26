@@ -10,12 +10,16 @@ const Container = (props) => {
         content,
         classNames,
         spaceBetween,
-        flexStart
+        flexStart,
+        justifyCenter,
+        alignCenter,
     } = props
 
     const styles = cn({
         'content': content,
         'center': center,
+        'justify-center': justifyCenter,
+        'alignCenter': alignCenter,
         'layout': layout,
         'col': col,
         'space-between': spaceBetween,

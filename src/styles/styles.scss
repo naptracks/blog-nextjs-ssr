@@ -41,14 +41,25 @@
 }
 
 .layout {
-  min-height: calc(100vh - 8.5rem);
+  min-height: calc(100vh - 11.5rem);
 }
 
 
 
 
 
+/* Separator */
 
+.separator-short {
+  width: 6rem;
+  height: 2px;
+  background-color: $orange;
+}
+.separator-wide {
+  width: 100%;
+  height: 1px;
+  background-color: $gray;
+}
 
 
 
@@ -60,11 +71,22 @@
 /**************** PAGES ****************/
 
 
+.header-dashboard-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 5rem 0 3rem 0;
+}
 
-
-
-
-
+.articles-dashboard-container {
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 
 
 
@@ -150,14 +172,6 @@
 
 
 
-
-
-
-
-
-
-
-
 /* Footer.js */
 
 .footer-container {
@@ -184,9 +198,7 @@
   width: 20rem;
   height: 100%;
   padding-top: 4.5rem;
-  img {
 
-  }
 }
 
 .footer-links-container {
@@ -213,6 +225,35 @@
 
   }
 }
+
+/* Card */
+
+
+.card-container {
+  min-width: 390px;
+  margin-bottom: 4rem ;
+  display: flex;
+  flex-direction: column;
+  //margin: 1rem;
+  img {
+    width: 390px;
+    height: 300px;
+  }
+  .read-more {
+    font-size: small;
+    color: $orange;
+    font-weight: bold;
+  }
+  .read-more-container {
+    display: flex;
+    align-items: center;
+    img {
+      width: initial;
+      height: 25px;
+    }
+  }
+}
+
 
 
 
