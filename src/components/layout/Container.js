@@ -4,11 +4,22 @@ import cn from 'classnames'
 const Container = (props) => {
 
     const {
-        center
+        center,
+        col,
+        layout,
+        content,
+        classNames,
+        spaceBetween,
+        flexStart
     } = props
 
-    const styles = cn('content',{
-        'center': center
+    const styles = cn({
+        'content': content,
+        'center': center,
+        'layout': layout,
+        'col': col,
+        'space-between': spaceBetween,
+        'flex-start': flexStart
     })
 
     return (

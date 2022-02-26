@@ -12,7 +12,7 @@ const Layout = (props) => {
     return (
         <Fragment>
             <Navbar/>
-            <Container center>
+            <Container center layout content>
             {props.children}
             </Container>
             <Footer/>

@@ -7,6 +7,10 @@
 
   /* Navbar.js */
 
+  .navbar {
+    padding: 0 6rem;
+  }
+
   .left-side-navbar-container {
     width: 25%;
     display: flex;
@@ -18,11 +22,15 @@
     margin-right: 1.5rem;
   }
 
+
   .logo-container {
     min-width: 50%;
     justify-content: center;
-    align-items: center;
+    button {
+      display: none;
+    }
   }
+
   .logo-container h4 {
     display: none;
   }
@@ -40,6 +48,34 @@
 
   .right-side-navbar-container h4 {
     margin-right: 2rem;
+  }
+
+  .fake-links-container {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    height: 4rem;
+  }
+  .fake-link {
+    margin: auto;
+  }
+  .fake-link:hover {
+    cursor: pointer;
+  }
+
+  .menu-container {
+    display: none !important;
+  }
+
+  /* Footer */
+
+  .top-footer-container {
+
+    flex-direction: row !important;
+    padding: 2.5rem 0 !important;
+    form {
+      margin-left: 10rem;
+    }
   }
 
 }

@@ -1,3 +1,5 @@
+@import "settings/_colors";
+
 
 /**************** AUTH ****************/
 
@@ -5,8 +7,15 @@
 .login-box {
   width: 25rem;
   height: 28rem;
-  border: solid 2px var(--lightgray-color);
+  border: solid 2px $lightgray;
 }
+
+
+
+
+
+
+
 
 
 /**************** LAYOUT ****************/
@@ -16,18 +25,52 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  min-height: calc(100vh - 12.5rem);
   display: flex;
   justify-content: center;
 }
 
 .content {
-  max-width: 950px;
+  display: flex;
+  width: 1330px;
+  padding: 0 1rem;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  min-height: calc(100vh - 8.5rem);
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 /**************** PAGES ****************/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**************** UI ****************/
@@ -36,14 +79,15 @@
 
 .navbar-container {
   width: 100%;
+  background: white;
 }
 .navbar {
   height: 8.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 6rem;
-  border-bottom: solid 1px var(--lightgray-color) ;
+  padding: 0 1rem;
+  border-bottom: solid 1px $lightgray;
 }
 
 
@@ -51,30 +95,125 @@
   display: none;
 }
 
+
 .logo-container {
-  display: flex;
   min-width: 100%;
+  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
+
 
 .logo-container h4, img {
   cursor: pointer;
 }
 
+
+.logo-container button {
+  background: none;
+  border: none;
+}
+
+
 .right-side-navbar-container {
   display: none;
 }
+
 
 .fake-links-container {
   display: none;
 }
 
 
+.menu-container {
+  position: absolute;
+  top: 8.5rem;
+  z-index: 100;
+  width: 100%;
+  display: none; // display flex with .open
+  padding-left: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: $lightgray;
+  min-height: calc(100vh - 8.5rem); // 8.5rem = height of navbar
+}
+
+.open {
+  display: flex;
+}
+
+.fixedOnTop {
+  position: fixed;
+  top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Footer.js */
 
-.footer {
+.footer-container {
   width: 100%;
-  height: 25rem;
-  border-top: solid 1px darkgray;
+  height: 38.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: solid 1px $lightgray;
 }
+
+.top-footer-container {
+  display: none;
+}
+
+.bottom-footer-container {
+  display: flex;
+  width: 100%;
+  background-color: $ultra-lightgray;
+  height: 100%;
+}
+
+.logo-footer-container {
+  width: 20rem;
+  height: 100%;
+  padding-top: 4.5rem;
+  img {
+
+  }
+}
+
+.footer-links-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-top: 3rem;
+  p {
+    font-size: 13px;
+    margin: 10px auto;
+  }
+}
+
+.socials-footer-container {
+  width: 100%;
+  background-color: $ultra-lightgray;
+  img {
+    padding-bottom: 2rem;
+    margin-right: 2rem;
+  }
+  p {
+    margin: 0;
+    padding-top: 0.2rem;
+
+  }
+}
+
+
+
+
