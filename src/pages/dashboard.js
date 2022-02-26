@@ -1,18 +1,30 @@
-
 // Dashboard page - route = '/dashboard
 // access with auth
 
-
-import {Fragment} from "react";
+import {Fragment, useEffect, useState} from "react";
 import Layout from "../components/layout/Layout";
 import Container from "../components/layout/Container";
 import Separator from "../components/layout/Separator";
 import Card from "../components/ui/Card";
+import {useDispatch, useSelector} from "react-redux";
+import {getPosts} from "../actions/post";
+
 
 const Dashboard = () => {
+
+    const [n, setN] = useState(12)
+    const dispatch = useDispatch()
+    const posts = useSelector(s => s.post.posts)
+
+
+    useEffect(() => {
+        dispatch(getPosts())
+    }, [getPosts])
+
+
+
     return (
         <Fragment>
-            <main>
                 <Layout>
                     <Container content col>
                         <div className={'header-dashboard-container'}>
@@ -20,18 +32,19 @@ const Dashboard = () => {
                             <h2>Find The Best Articles</h2>
                         </div>
                         <div className={'articles-dashboard-container'}>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
+                            {posts.slice(0, n).map(p => <Card key={p.id} title={p.title} body={p.body}/>)}
+                        </div>
+                        <div className={'header-dashboard-container'}>
+                            <button onClick={() => setN(state => state + 12) }>Load More Articles</button>
                         </div>
                     </Container>
                 </Layout>
-            </main>
         </Fragment>
     )
 }
 
+
+
+
 export default Dashboard;
+

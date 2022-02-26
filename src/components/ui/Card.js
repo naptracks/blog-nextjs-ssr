@@ -1,13 +1,14 @@
 import {Fragment} from "react";
+import {chunkWords} from "../../utils/chunkWords";
 
 
-const Card = () => {
+const Card = ({key, title, body}) => {
     return (
         <Fragment>
-            <div className={'card-container'}>
+            <div key={key} className={'card-container'}>
                 <img src={'https://via.placeholder.com/350/400/f66b97'} alt={'card image'}/>
-                <h3>Title</h3>
-                <p>Description</p>
+                <h3>{chunkWords(title, 3)}</h3>
+                <p>{chunkWords(body, 10)}</p>
                 <div className={'read-more-container'}>
                     <p className={'read-more'}>Read More</p>
                     <img src={'arrow.png'} alt={'read more'}/>

@@ -190,8 +190,8 @@
 .bottom-footer-container {
   display: flex;
   width: 100%;
-  background-color: $ultra-lightgray;
   height: 100%;
+  background-color: $ultra-lightgray;
 }
 
 .logo-footer-container {
@@ -230,7 +230,7 @@
 
 
 .card-container {
-  min-width: 390px;
+  max-width: 390px;
   margin-bottom: 4rem ;
   display: flex;
   flex-direction: column;

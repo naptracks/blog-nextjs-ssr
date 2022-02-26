@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import cn from 'classnames';
 
 // COMPONENT: <Navbar/>
@@ -6,11 +6,10 @@ import cn from 'classnames';
 
 const Navbar = () => {
 
-    const [isOpen, setIsOpen ] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
         .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
-
 
 
     // LEFT SIDE OF NAVBAR
@@ -23,7 +22,7 @@ const Navbar = () => {
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
-            <img src={'logo.png'} alt={'logo'} />
+            <img src={'logo.png'} alt={'logo'}/>
             <button onClick={() => setIsOpen(state => !state)}>
                 MENU
             </button>
@@ -47,7 +46,8 @@ const Navbar = () => {
     )
 
     return (
-        <div className={cn('navbar-container',{'fixedOnTop': isOpen})}>
+        <Fragment>
+            <div className={cn('navbar-container', {'fixedOnTop': isOpen})}>
                 <div className={'navbar center'}>
                     {leftSide}
                     {logo}
@@ -57,7 +57,8 @@ const Navbar = () => {
                 <div className={'fake-links-container center'}>
                     {fakeLinks}
                 </div>
-        </div>
+            </div>
+        </Fragment>
     )
 }
 
