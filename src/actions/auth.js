@@ -1,4 +1,4 @@
-import api from '../utils/api';
+import {apiAuth} from "../utils/api";
 import {
 
     USER_LOADED,
@@ -11,7 +11,7 @@ import {
 // Load User
 export const loadUser = () => async dispatch => {
     try {
-        const res = await api.get('/auth');
+        const res = await apiAuth.get('/fakeAuth');
 
         dispatch({
             type: USER_LOADED,
@@ -30,7 +30,7 @@ export const login = (email, password) => async dispatch => {
     const body = { email, password };
 
     try {
-        const res = await api.post('/auth', body);
+        const res = await apiAuth.post('/fakeAuth', body);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -38,14 +38,12 @@ export const login = (email, password) => async dispatch => {
         });
 
         dispatch(loadUser());
+
     } catch (err) {
         const errors = err.response.data.errors;
-
-
         if (errors) {
             errors.forEach(error => console.log(error))
         }
-
         dispatch({
             type: LOGIN_FAIL
         });

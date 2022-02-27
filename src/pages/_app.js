@@ -4,16 +4,36 @@ import '../styles/stylesDesktop.scss'
 import '../styles/stylesTablet.scss'
 import {useStore} from '../helpers/store'
 import {Provider} from 'react-redux'
-import { SessionProvider } from "next-auth/react"
+import {SessionProvider, useSession} from "next-auth/react"
 
-export default function App({ Component, pageProps: {session, ...pageProps} }) {
+function Auth({children}) {
+    const {status} = useSession({required: true})
+
+    if (status === 'authenticated') {
+        return children
+    }
+    // Session is being fetched, or no user.
+    return children
+}
+
+export default function App({Component, pageProps: {session, ...pageProps}}) {
     const store = useStore(pageProps.state)
 
     return (
         <SessionProvider session={session}>
-            <Provider store={store}>
-                <Component {...pageProps} />
-            </Provider>
+            {
+                Component.auth ? (
+                        <Auth>
+                            <Provider store={store}>
+                                <Component {...pageProps}/>
+                            </Provider>
+                        </Auth>
+                    ) :
+                    <Provider store={store}>
+                        <Component {...pageProps}/>
+                    </Provider>
+            }
         </SessionProvider>
     )
 }
+

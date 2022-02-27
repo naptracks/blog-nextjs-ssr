@@ -1,12 +1,13 @@
 import React, {Fragment, useState} from "react";
 import cn from 'classnames';
 
+
 // COMPONENT: <Navbar/>
 // Consume by <Layout/>
 
-const Navbar = () => {
-
+const Navbar = ({session, signOut}) => {
     const [isOpen, setIsOpen] = useState(false)
+
 
     const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
         .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
@@ -31,7 +32,7 @@ const Navbar = () => {
     // RIGHT SIDE OF NAVBAR
     const rightSide = (
         <div className={'right-side-navbar-container'}>
-            <h4>SIGN IN</h4>
+            {session ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <h4>SIGN IN</h4>}
             <img src={'profile.png'} alt={'profile'}/>
             <img src={'cart.png'} alt={'cart'}/>
         </div>

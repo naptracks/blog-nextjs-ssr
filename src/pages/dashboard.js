@@ -8,23 +8,29 @@ import Separator from "../components/layout/Separator";
 import Card from "../components/ui/Card";
 import {useDispatch, useSelector} from "react-redux";
 import {getPosts} from "../actions/post";
+// next-auth
+import {useSession, signOut} from "next-auth/react";
 
 
 const Dashboard = () => {
+
+    const { data: session } = useSession()
 
     const [n, setN] = useState(12)
     const dispatch = useDispatch()
     const posts = useSelector(s => s.post.posts)
 
+    console.log(session)
 
     useEffect(() => {
         dispatch(getPosts())
     }, [getPosts])
 
 
+
     return (
         <Fragment>
-                <Layout>
+                <Layout session={session} singOut={() => signOut()}>
                     <Container content col>
                         <div className={'header-dashboard-container'}>
                             <Separator short/>
@@ -43,7 +49,7 @@ const Dashboard = () => {
 }
 
 
-
+Dashboard.auth = true;
 
 export default Dashboard;
 
