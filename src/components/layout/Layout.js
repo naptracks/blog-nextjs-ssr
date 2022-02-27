@@ -5,7 +5,6 @@ import Container from "../layout/Container";
 
 
 // Layout.jst provides a navbar and a main container
-// Container<props: center>
 
 const Layout = (props) => {
 

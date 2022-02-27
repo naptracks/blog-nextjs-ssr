@@ -22,7 +22,6 @@ const Dashboard = () => {
     }, [getPosts])
 
 
-
     return (
         <Fragment>
                 <Layout>
@@ -32,7 +31,7 @@ const Dashboard = () => {
                             <h2>Find The Best Articles</h2>
                         </div>
                         <div className={'articles-dashboard-container'}>
-                            {posts.slice(0, n).map(p => <Card key={p.id} title={p.title} body={p.body}/>)}
+                            {posts.slice(0, n).map((p, key) => <Card key={key} title={p.title} body={p.body}/>)}
                         </div>
                         <div className={'header-dashboard-container'}>
                             <button onClick={() => setN(state => state + 12) }>Load More Articles</button>

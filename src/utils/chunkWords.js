@@ -1,18 +1,8 @@
-import {Fragment} from "react";
-
-export const chunkWords = (sentence, n) => {
-    const words = sentence.split(' ')
+export const chunkWords = (string, n) => {
+    const words = string.split(' ')
     if(words.length > n) {
-        const chunk = words.slice(0, n)
-        return (
-            <div style={{display: 'flex', flexWrap: 'wrap', margin: '0'}}>
-                {
-                    chunk.map(c => <Fragment key={c} style={{margin: '0'}}>{c} </Fragment>)
-                }
-            </div>
-
-        )
+        return words.slice(0, n).join(' ')
     }
-    return sentence
+    return string
 }
 

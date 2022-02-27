@@ -1,6 +1,6 @@
 import {HYDRATE} from "next-redux-wrapper";
 
-const hydrate = (state = {tick: 'init'}, action) => {
+const hydrate = (state = {}, action) => {
     switch (action.type) {
         case HYDRATE:
             return {

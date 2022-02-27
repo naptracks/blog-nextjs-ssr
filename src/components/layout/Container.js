@@ -1,25 +1,26 @@
 import React from "react";
 import cn from 'classnames'
 
-const Container = (props) => {
 
+
+const Container = (props) => {
     const {
         center,
         col,
         layout,
         content,
-        classNames,
+        className,
         spaceBetween,
         flexStart,
         justifyCenter,
         alignCenter,
     } = props
 
-    const styles = cn({
+    const styles = cn(className,{
         'content': content,
         'center': center,
         'justify-center': justifyCenter,
-        'alignCenter': alignCenter,
+        'align-center': alignCenter,
         'layout': layout,
         'col': col,
         'space-between': spaceBetween,

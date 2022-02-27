@@ -3,12 +3,6 @@
 
 /**************** AUTH ****************/
 
-/* Login.js */
-.login-box {
-  width: 25rem;
-  height: 28rem;
-  border: solid 2px $lightgray;
-}
 
 
 
@@ -35,10 +29,7 @@
   padding: 0 1rem;
 }
 
-.col {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .layout {
   min-height: calc(100vh - 11.5rem);
@@ -70,7 +61,7 @@
 
 /**************** PAGES ****************/
 
-
+// PAGES --- Dashboard //
 .header-dashboard-container {
   width: 100%;
   display: flex;
@@ -97,7 +88,7 @@
 
 /**************** UI ****************/
 
-/* Navbar.js */
+/* UI --- Navbar.js */
 
 .navbar-container {
   width: 100%;
@@ -172,7 +163,7 @@
 
 
 
-/* Footer.js */
+/* UI --- Footer.js */
 
 .footer-container {
   width: 100%;
@@ -226,7 +217,7 @@
   }
 }
 
-/* Card */
+/* UI --- Card */
 
 
 .card-container {
@@ -234,7 +225,6 @@
   margin-bottom: 4rem ;
   display: flex;
   flex-direction: column;
-  //margin: 1rem;
   img {
     width: 390px;
     height: 300px;
@@ -253,6 +243,14 @@
     }
   }
 }
+
+/* UI ---- Login.js */
+.login-box {
+  width: 25rem;
+  height: 28rem;
+  border: solid 2px $lightgray;
+}
+
 
 
 

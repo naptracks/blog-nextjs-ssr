@@ -15,8 +15,6 @@ function initStore(initialState) {
     )
 }
 
-
-
 export const initializeStore = (preloadedState) => {
     let _store = store ?? initStore(preloadedState)
 

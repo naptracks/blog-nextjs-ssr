@@ -16,7 +16,7 @@ a {
   box-sizing: border-box;
 }
 
-/* Center */
+/* FLEX BOX */
 
 .center {
   display: flex;
@@ -29,7 +29,7 @@ a {
   justify-content: center;
 }
 
-.alignCenter {
+.align-center {
   display: flex;
   align-items: center;
 }
@@ -38,12 +38,19 @@ a {
   display: flex;
   justify-content: flex-start;
 }
+/* Column */
+.col {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Space Between */
 .space-between {
   display: flex;
   justify-content: space-between;
 }
+
+/* FONTS */
 
 h4 {
   font-family: 'Lato', sans-serif;
