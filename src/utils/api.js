@@ -13,22 +13,22 @@ export const api = axios.create({
     }
 });
 
-export const apiAuth = axios.create({
-    baseURL: 'http://localhost:3000/api/auth/signin',
-    headers: {
-        'Content-Type': 'application/json'
-    }
-});
+// export const apiAuth = axios.create({
+//     baseURL: 'http://localhost:3000/api/auth/signin',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     }
+// });
 
-apiAuth.interceptors.response.use(
-    res => res,
-    err => {
-        if (err.response.status === 401) {
-            useStore().dispatch({ type: LOGOUT });
-        }
-        return Promise.reject(err);
-    }
-);
+// apiAuth.interceptors.response.use(
+//     res => res,
+//     err => {
+//         if (err.response.status === 401) {
+//             useStore().dispatch({ type: LOGOUT });
+//         }
+//         return Promise.reject(err);
+//     }
+// );
 
 
 // apiAuth.interceptors.request.use(async (request) => {

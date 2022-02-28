@@ -64,8 +64,8 @@ export const addPost = formData => async dispatch => {
 // Get post
 export const getPost = id => async dispatch => {
     try {
-        const res = await api.get(`/posts/${id}`);
-
+        const res = await api.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+        console.log('fetching...')
         dispatch({
             type: GET_POST,
             payload: res.data

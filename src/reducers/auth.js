@@ -1,13 +1,10 @@
 import {
     USER_LOADED,
-    LOGIN_SUCCESS,
     LOGOUT,
 } from '../actions/types';
 
 const initialState = {
-    token: '',
     isAuthenticated: null,
-    loading: true,
     user: null
 };
 
@@ -17,24 +14,13 @@ export default function (state = initialState, action) {
     switch (type) {
         case USER_LOADED:
             return {
-                token: payload.token,
                 isAuthenticated: true,
-                loading: false,
                 user: payload.user
-            };
-        case LOGIN_SUCCESS:
-            return {
-                ...state,
-                ...payload,
-                isAuthenticated: true,
-                loading: false
             };
         case LOGOUT:
             return {
-                ...state,
-                token: null,
+
                 isAuthenticated: false,
-                loading: false,
                 user: null
             };
         default:

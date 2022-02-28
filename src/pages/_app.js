@@ -21,18 +21,21 @@ export default function App({Component, pageProps: {session, ...pageProps}}) {
 
     return (
         <SessionProvider session={session}>
-            {
-                Component.auth ? (
-                        <Auth>
-                            <Provider store={store}>
-                                <Component {...pageProps}/>
-                            </Provider>
-                        </Auth>
-                    ) :
-                    <Provider store={store}>
-                        <Component {...pageProps}/>
-                    </Provider>
-            }
+            {/*{*/}
+            {/*    Component.auth ? (*/}
+            {/*            <Auth>*/}
+            {/*                <Provider store={store}>*/}
+            {/*                    <Component {...pageProps}/>*/}
+            {/*                </Provider>*/}
+            {/*            </Auth>*/}
+            {/*        ) :*/}
+            {/*        <Provider store={store}>*/}
+            {/*            <Component {...pageProps}/>*/}
+            {/*        </Provider>*/}
+            {/*}*/}
+            <Provider store={store}>
+                <Component {...pageProps}/>
+            </Provider>
         </SessionProvider>
     )
 }

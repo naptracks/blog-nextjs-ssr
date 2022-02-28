@@ -10,6 +10,7 @@ import {login} from "../../actions/auth";
 //redux
 import {useSelector, useDispatch} from "react-redux";
 
+
 // Login.js module
 
 const Login = ({signIn, signOut}) => {
@@ -32,8 +33,6 @@ const Login = ({signIn, signOut}) => {
         e.preventDefault();
         dispatch(login(email, password));
     };
-
-    console.log(auth)
 
     return (
         <Fragment>

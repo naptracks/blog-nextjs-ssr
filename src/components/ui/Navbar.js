@@ -1,4 +1,5 @@
 import React, {Fragment, useState} from "react";
+import {useRouter} from "next/router";
 import cn from 'classnames';
 import {Avatar} from "@mui/material";
 
@@ -7,6 +8,7 @@ import {Avatar} from "@mui/material";
 
 const Navbar = ({user, signOut}) => {
     const [isOpen, setIsOpen] = useState(false)
+    const router = useRouter()
 
 
     const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
@@ -23,7 +25,7 @@ const Navbar = ({user, signOut}) => {
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
-            <img src={'logo.png'} alt={'logo'}/>
+            <img onClick={() => router.push('/')} src={'logo.png'} alt={'logo'}/>
             <button onClick={() => setIsOpen(state => !state)}>
                 MENU
             </button>

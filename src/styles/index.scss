@@ -44,14 +44,29 @@ a {
   flex-direction: column;
 }
 
+/* ROW */
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Space Between */
 .space-between {
   display: flex;
   justify-content: space-between;
 }
 
-/* FONTS */
+// POSITIONS
+.relative {
+  position: relative;
+}
 
+/* FONTS */
+h5 {
+  font-family: 'Lora', sans-serif;
+  font-size: 1.8em;
+  font-weight: lighter;
+}
 h4 {
   font-family: 'Lato', sans-serif;
 }
@@ -66,9 +81,15 @@ h2 {
   font-size: 2.5em;
 }
 
-p {
-  color: $gray
+h1 {
+  font-family: "League Spartan", sans-serif;
+  font-size: 3.5em;
+  margin: 2.5rem 0 0 0;
+}
 
+p {
+  color: $gray;
+  line-height: 2em
 }
 
 
