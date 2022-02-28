@@ -14,6 +14,7 @@ import {capitalizeAllFirstLetters, punctuation, bigLetter, makeBodyLarger, chunk
 import Separator from "../components/layout/Separator";
 import {api} from "../utils/api";
 import {Avatar} from "@mui/material";
+import Card from "../components/ui/Card";
 
 // PAGE Article [postId].js
 
@@ -23,7 +24,7 @@ const Post = () => {
     const {postId} = router.query
 
     const dispatch = useDispatch();
-    const post = useSelector(s => s.post.post)
+    const post = useSelector(s => s.post)
     const {data: session} = useSession()
 
     useLayoutEffect(() => {
@@ -43,13 +44,12 @@ const Post = () => {
     )
 
 
-    //
     const {
         body,
         id,
         title,
         userId
-    } = post
+    } = post.post
 
     // const body = 'body'
     // const title = 'title'
@@ -109,8 +109,16 @@ const Post = () => {
                         <p></p>
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
-                    <img src={'socials-counter.png'}/>
-                    <Separator wide/>
+                    <img src={'socials-counter.png'} alt={'socials counter'}/>
+                    <Separator wide />
+                    <Separator wide />
+                        <div className={'header-dashboard-container'}>
+                            <Separator short/>
+                            <h2>Related Articles</h2>
+                        </div>
+                        <div className={'articles-dashboard-container'}>
+                            {post.posts.slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title} body={p.body}/>)}
+                        </div>
                 </Container>
             </Layout>
         </Fragment>
