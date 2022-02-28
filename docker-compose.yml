@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  react-app:
+    image: dehef-blog-image
+    stdin_open: true
+    ports:
+      - "3000:3000"
+
