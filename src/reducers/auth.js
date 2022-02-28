@@ -17,10 +17,10 @@ export default function (state = initialState, action) {
     switch (type) {
         case USER_LOADED:
             return {
-                ...state,
+                token: payload.token,
                 isAuthenticated: true,
                 loading: false,
-                user: payload
+                user: payload.user
             };
         case LOGIN_SUCCESS:
             return {

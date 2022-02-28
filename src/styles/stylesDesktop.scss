@@ -40,14 +40,17 @@
     width: 25%;
     justify-content: flex-end;
     align-items: center;
-  }
-
-  .right-side-navbar-container img {
-    margin-left: 2rem;
-  }
-
-  .right-side-navbar-container h4 {
-    margin-right: 2rem;
+    .img-right-side-navbar {
+      margin-left: 2rem;
+    }
+    h4 {
+      margin-right: 2rem;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
   }
 
   .fake-links-container {

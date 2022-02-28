@@ -2,32 +2,46 @@ import {Fragment, useEffect} from "react";
 //components
 import Layout from "../components/layout/Layout";
 import Login from "../components/ui/Login";
-//api
-import setAuthToken from "../utils/setAuthToken";
-// auth
-import {useSession, signIn, signOut, getCsrfToken} from "next-auth/react"
-import Dashboard from "./dashboard";
-//redux
-import {useDispatch, useSelector} from "react-redux";
-import {loadUser} from "../actions/auth";
-import {LOGOUT} from "../actions/types";
 
+// auth
+import {useSession, signIn, signOut} from "next-auth/react"
+import Dashboard from "./dashboard";
+import {useDispatch} from "react-redux";
+import {USER_LOADED, LOGOUT} from "../actions/types";
 
 
 // HOME PAGE
 // route = '/'
 
 export default function Home() {
+
+
     const { data: session } = useSession()
-    console.log(session)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        if (session) {
+            const token = session.accessToken
+            localStorage.setItem('token', token)
+            dispatch({type: USER_LOADED, payload: {token, user: session.user}})
+        } else {
+                localStorage.removeItem('token')
+                dispatch({type: LOGOUT})
+        }
+
+        // log user out from all tabs if they log out in one tab
+        window.addEventListener('storage', () => {
+            if (!localStorage.token) dispatch({type: LOGOUT});
+        })
+    },[session])
+
+
     if (session) {
         return (
          <Dashboard/>
         )
     }
-
-    console.log(session)
-
     return (
         <>
             <Fragment>

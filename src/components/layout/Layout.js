@@ -6,11 +6,11 @@ import Container from "../layout/Container";
 
 // Layout.jst provides a navbar and a main container
 
-const Layout = ({children, center, session, singOut}) => {
+const Layout = ({children, center, user, singOut}) => {
 
     return (
         <Fragment>
-            <Navbar session={session} signOut={singOut}/>
+            <Navbar user={user} signOut={singOut}/>
             <Container layout center={center}>
             {children}
             </Container>

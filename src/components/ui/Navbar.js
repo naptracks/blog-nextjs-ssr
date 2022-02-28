@@ -1,11 +1,11 @@
 import React, {Fragment, useState} from "react";
 import cn from 'classnames';
-
+import {Avatar} from "@mui/material";
 
 // COMPONENT: <Navbar/>
 // Consume by <Layout/>
 
-const Navbar = ({session, signOut}) => {
+const Navbar = ({user, signOut}) => {
     const [isOpen, setIsOpen] = useState(false)
 
 
@@ -32,11 +32,12 @@ const Navbar = ({session, signOut}) => {
     // RIGHT SIDE OF NAVBAR
     const rightSide = (
         <div className={'right-side-navbar-container'}>
-            {session ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <h4>SIGN IN</h4>}
-            <img src={'profile.png'} alt={'profile'}/>
-            <img src={'cart.png'} alt={'cart'}/>
+            {user ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <h4>SIGN IN</h4>}
+            {user ? <Avatar alt="alt" src={user.image}/> : <img className={'img-right-side-navbar'} src={'profile.png'} alt={'profile'}/>}
+            <img className={'img-right-side-navbar'} src={'cart.png'} alt={'cart'}/>
         </div>
     )
+
     // MENU BOX: OPEN WITH STATE
     const menuBox = (
         <div className={cn('menu-container', {'open': isOpen})}>

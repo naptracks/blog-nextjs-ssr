@@ -14,7 +14,7 @@ export const api = axios.create({
 });
 
 export const apiAuth = axios.create({
-    baseURL: 'http://localhost:3000/api/',
+    baseURL: 'http://localhost:3000/api/auth/signin',
     headers: {
         'Content-Type': 'application/json'
     }
