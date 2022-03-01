@@ -12,11 +12,12 @@ import {getPosts} from "../actions/post";
 // next-auth
 import {signOut, useSession} from "next-auth/react";
 
-import setAuthToken from "../utils/setAuthToken";
 import Home from "./index";
+import {LOGOUT} from "../actions/types";
+import Button from "@mui/material/Button";
 
 
-const Dashboard = () => {
+const Posts = () => {
 
     const [n, setN] = useState(12)
     const dispatch = useDispatch()
@@ -25,11 +26,17 @@ const Dashboard = () => {
     const router = useRouter()
 
     useEffect(() => {
+
         dispatch(getPosts())
-    }, [getPosts])
+    }, [session])
 
 
     if (!session) {
+        dispatch({type: LOGOUT})
+        if (localStorage.token) {
+            localStorage.removeItem('token')
+        }
+
         return <Home/>
     }
 
@@ -45,7 +52,7 @@ const Dashboard = () => {
                         {posts.slice(0, n).map((p, key) => <Card router={router} id={p.id} title={p.title} body={p.body}/>)}
                     </div>
                     <div className={'header-dashboard-container'}>
-                        <button onClick={() => setN(state => state + 12)}>Load More Articles</button>
+                        <Button onClick={() => setN(state => state + 12)}>Load More Articles</Button>
                     </div>
                 </Container>
             </Layout>
@@ -53,6 +60,7 @@ const Dashboard = () => {
     )
 }
 
+Posts.auth = true;
 
-export default Dashboard;
+export default Posts;
 

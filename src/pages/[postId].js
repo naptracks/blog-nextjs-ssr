@@ -2,7 +2,8 @@ import {useRouter} from 'next/router'
 import React, {Fragment, useEffect, useLayoutEffect} from "react";
 //redux
 import {useDispatch, useSelector} from "react-redux";
-import {getPost} from "../actions/post";
+import {getPost, getPosts} from "../actions/post";
+import {fetchUsers} from "../actions/users";
 //components
 import Home from "./index";
 import Layout from "../components/layout/Layout";
@@ -12,48 +13,54 @@ import {signOut, useSession} from "next-auth/react";
 //tools
 import {capitalizeAllFirstLetters, punctuation, bigLetter, makeBodyLarger, chunkWords} from "../utils/stringTools";
 import Separator from "../components/layout/Separator";
-import {api} from "../utils/api";
 import {Avatar} from "@mui/material";
 import Card from "../components/ui/Card";
+import {LOGOUT} from "../actions/types";
+import CommentForm from "../components/post/CommentForm";
+import {deleteComment, fetchComments} from "../actions/comment";
+import comments from "../reducers/comments";
+import CommentItem from "../components/post/CommentItem";
+
 
 // PAGE Article [postId].js
-
-
 const Post = () => {
+
+    // settings
     const router = useRouter()
     const {postId} = router.query
-
-    const dispatch = useDispatch();
-    const post = useSelector(s => s.post)
     const {data: session} = useSession()
+    const dispatch = useDispatch();
 
-    useLayoutEffect(() => {
-        dispatch(getPost(postId))
-    }, [getPost])
-
-
-    const infoAuthor = (
-        <div className={'info-author-article-container center col'}>
-            <Avatar alt="alt" src={session.user.image} sx={{width: 90, height: 90}}/>
-            <Separator wide margin/>
-            <div className={'center col'}>
-                <p>Written by</p>
-                <h4>{session.user.name}</h4>
-            </div>
-        </div>
-    )
-
-
+    // from store
+    const post = useSelector(s => s.post)
     const {
         body,
-        id,
         title,
         userId
     } = post.post
+    const user = useSelector(s => s.user)
+    const author = user.users.find(u => u.id === userId) || 'loading...'
+    const comments = useSelector(s => s.comments.comments)
 
-    // const body = 'body'
-    // const title = 'title'
 
+    console.log(comments)
+
+    useEffect(() => {
+        dispatch(fetchUsers())
+        dispatch(getPost(postId))
+        dispatch(getPosts())
+        dispatch(fetchComments(postId))
+    }, [postId, getPost, getPosts, fetchUsers, fetchComments, session])
+
+
+    // if session is down
+    if (!session) {
+        dispatch({type: LOGOUT})
+        if (localStorage.token) {
+            localStorage.removeItem('token')
+        }
+        return <Home/>
+    }
 
     const boldParagraph = (
         <div className={'bold-paragraph-article'}>
@@ -61,13 +68,21 @@ const Post = () => {
         </div>
     )
 
-    console.log(post)
+    const infoAuthor = (
+        <div className={'info-author-article-container center col'}>
+            <Avatar alt="alt" src={session.user.image} sx={{width: 90, height: 90}}/>
+            <Separator wide margin/>
 
-    if (!session) {
-        return <Home/>
-    }
+            <div className={'center col'}>
+                <p>Written by</p>
+                <h4>{author.name}</h4>
+            </div>
+
+        </div>
+    )
 
     return (
+
         <Fragment>
             <Layout user={session.user} singOut={() => signOut()}>
                 <Container content center col className={'article-container relative'}>
@@ -110,21 +125,33 @@ const Post = () => {
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
                     <img src={'socials-counter.png'} alt={'socials counter'}/>
-                    <Separator wide />
-                    <Separator wide />
-                        <div className={'header-dashboard-container'}>
-                            <Separator short/>
-                            <h2>Related Articles</h2>
-                        </div>
-                        <div className={'articles-dashboard-container'}>
-                            {post.posts.slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title} body={p.body}/>)}
-                        </div>
+                    <Separator wide/>
+
+                    {
+                        comments.map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId} deleteComment={deleteComment}/>)
+                    }
+                    <CommentForm postId={postId}/>
+
+                    <Separator wide/>
+                    <div className={'header-dashboard-container'}>
+                        <Separator short/>
+                        <h2>Related Articles</h2>
+                    </div>
+                    <div className={'articles-dashboard-container'}>
+                        {post.posts.slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title}
+                                                                      body={p.body}/>)}
+                    </div>
                 </Container>
             </Layout>
+            }
         </Fragment>
     )
 }
 
+Post.auth = true
+
+
 export default Post
+
 
 

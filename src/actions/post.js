@@ -2,8 +2,6 @@ import {api} from '../utils/api';
 import {
     GET_POSTS,
     POST_ERROR,
-    DELETE_POST,
-    ADD_POST,
     GET_POST,
 } from './types';
 
@@ -25,47 +23,10 @@ export const getPosts = () => async dispatch => {
 };
 
 
-// Delete post
-export const deletePost = id => async dispatch => {
-    try {
-        await api.delete(`/posts/${id}`);
-
-        dispatch({
-            type: DELETE_POST,
-            payload: id
-        });
-
-    } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-    }
-};
-
-// Add post
-export const addPost = formData => async dispatch => {
-    try {
-        const res = await api.post('/posts', formData);
-
-        dispatch({
-            type: ADD_POST,
-            payload: res.data
-        });
-
-    } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-    }
-};
-
 // Get post
 export const getPost = id => async dispatch => {
     try {
         const res = await api.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-        console.log('fetching...')
         dispatch({
             type: GET_POST,
             payload: res.data

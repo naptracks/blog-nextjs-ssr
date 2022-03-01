@@ -2,9 +2,9 @@ import React, {Fragment, useState} from "react";
 import {useRouter} from "next/router";
 import cn from 'classnames';
 import {Avatar} from "@mui/material";
+import {route} from "next/dist/server/router";
 
 // COMPONENT: <Navbar/>
-// Consume by <Layout/>
 
 const Navbar = ({user, signOut}) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -25,16 +25,24 @@ const Navbar = ({user, signOut}) => {
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
-            <img onClick={() => router.push('/')} src={'logo.png'} alt={'logo'}/>
+            <img onClick={() => router.push('/posts')} src={'logo.png'} alt={'logo'}/>
             <button onClick={() => setIsOpen(state => !state)}>
                 MENU
             </button>
         </div>
     )
+
+
     // RIGHT SIDE OF NAVBAR
+
+    const handleClick = () => {
+        router.push('/')
+        signOut()
+    }
+
     const rightSide = (
         <div className={'right-side-navbar-container'}>
-            {user ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <h4>SIGN IN</h4>}
+            {user ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <button><h4>SIGN IN</h4></button>}
             {user ? <Avatar alt="alt" src={user.image}/> : <img className={'img-right-side-navbar'} src={'profile.png'} alt={'profile'}/>}
             <img className={'img-right-side-navbar'} src={'cart.png'} alt={'cart'}/>
         </div>

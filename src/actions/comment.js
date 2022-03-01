@@ -2,8 +2,23 @@ import {api} from '../utils/api';
 import {
     ADD_COMMENT,
     REMOVE_COMMENT,
-    POST_ERROR
+    POST_ERROR,
+    FETCH_COMMENTS
 } from './types';
+
+
+export const fetchComments = (postId) => async dispatch => {
+    try {
+        const res = await api.get(`/comments`)
+        const comments = res.data.filter(data => data.postId == postId)
+        dispatch({
+            type: FETCH_COMMENTS,
+            payload: comments
+        })
+    } catch (err) {
+       console.log(err)
+    }
+}
 
 // Add comment
 export const addComment = (postId, formData) => async dispatch => {

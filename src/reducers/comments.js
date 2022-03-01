@@ -1,5 +1,5 @@
 import {
-    ADD_COMMENT,
+    ADD_COMMENT, FETCH_COMMENTS,
     REMOVE_COMMENT
 } from '../actions/types';
 
@@ -17,7 +17,12 @@ export default function(state = initialState, action) {
         case ADD_COMMENT:
             return {
                 ...state,
-                post: { ...state, comments: payload },
+                loading: false
+            };
+        case FETCH_COMMENTS:
+            return {
+                ...state,
+                comments: payload,
                 loading: false
             };
         case REMOVE_COMMENT:
