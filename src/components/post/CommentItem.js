@@ -1,29 +1,26 @@
 import React from 'react';
 import {capitalizeAllFirstLetters, punctuation} from "../../utils/stringTools";
+import {Avatar} from "@mui/material";
+import Separator from "../layout/Separator";
 
 const CommentItem = (props) => {
 
     const {
-        postId,
-        id,
         text,
         name,
         email,
-        deleteComment
     } = props
 
 
 
-    return <div className='post bg-white p-1 my-1'>
-        <div>
-            <img className='round-img' src={'profile.png'} alt=''/>
+    return <div>
+        <Separator wide/>
+        <div className={'profile-comments-item'}>
+            <Avatar>{email.slice(0,1)}</Avatar>
             <h4>{email}</h4>
         </div>
-        <div>
             <h4>{capitalizeAllFirstLetters(name)}</h4>
-            <p className='my-1'>{punctuation(text)}</p>
-
-        </div>
+            <p>{punctuation(text)}</p>
     </div>
 };
 

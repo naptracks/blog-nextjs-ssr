@@ -1,7 +1,19 @@
-import {useState} from 'react';
-import {ADD_COMMENT} from "../../actions/types";
+import {Fragment, useState} from 'react';
+import {Input, Button, TextField} from "@mui/material";
+import { makeStyles } from '@mui/styles';
+import Separator from "../layout/Separator";
 
-const CommentForm = ({postId, addComment, dispatch}) => {
+const useStyles = makeStyles({
+    margin: {
+       background: 'rose'
+    }
+})
+
+const CommentForm = (props) => {
+
+    const {postId, addComment, dispatch} = props
+    const classes = useStyles();
+
     const initialState = {
         name: '',
         email: '',
@@ -22,30 +34,35 @@ const CommentForm = ({postId, addComment, dispatch}) => {
         setComment(initialState);
     }
 
+
+
     return (
-        <div className='post-form'>
-            <div className='bg-primary p'>
-                <h3>Leave a Comment ;)</h3>
+        <Fragment>
+            <div className={'col center'}>
+                <Separator short/>
+                <h3>Leave A Comment</h3>
+
             </div>
             <form
                 method={'post'}
-                className='form my-1'
+                className='comment-form col'
                 onSubmit={e => onSubmit(e)}
+                c
             >
-                <input name={'name'} placeholder={'name'} value={comment.name} onChange={e => onChange(e)}/>
-                <input name={'email'} placeholder={'email'} value={comment.email} onChange={e => onChange(e)}/>
+
+                <input required name={'email'} placeholder={'Email'} value={comment.email} onChange={e => onChange(e)}/>
+                <input required  name={'name'} placeholder={'Title'} value={comment.name} onChange={e => onChange(e)}/>
                 <textarea
                     name='body'
-                    cols='30'
                     rows='5'
-                    placeholder='Commente le post'
+                    placeholder='Write something fun here...'
                     value={comment.body}
                     onChange={e => onChange(e)}
                     required
                 />
-                <button type='submit' className='btn btn-dark my-1'>Commenter</button>
+                <Button type='submit' className='btn btn-dark my-1'>Add Your Comment</Button>
             </form>
-        </div>
+        </Fragment>
     );
 };
 

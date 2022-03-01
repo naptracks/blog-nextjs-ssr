@@ -41,6 +41,11 @@
 
 /* Separator */
 
+.separator {
+  margin: 1rem;
+  padding-top: 1px;
+}
+
 .separator-short {
   width: 6rem;
   height: 2px;
@@ -114,6 +119,7 @@
 .text-article-container {
   width: 50%;
   display: flex;
+  margin: 3rem 0;
   p {
     align-items: flex-end;
   }
@@ -163,7 +169,7 @@
 }
 
 .second-paragraph {
-  margin-top: 2rem;
+  //margin-top: 2rem;
 margin-left: 10rem;
 }
 
@@ -306,12 +312,18 @@ margin-left: 10rem;
 
 .card-container {
   max-width: 390px;
-  margin-bottom: 4rem ;
+  margin-bottom: 6rem ;
+  height: 30rem;
   display: flex;
   flex-direction: column;
+  position: relative;
   img {
     width: 390px;
     height: 300px;
+    margin: 0;
+  }
+  p, h3 {
+    margin: 1rem 0 0 0;
   }
   .read-more {
     font-size: small;
@@ -321,9 +333,13 @@ margin-left: 10rem;
   .read-more-container {
     display: flex;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
     img {
       width: initial;
       height: 25px;
+      margin-top: 1rem;
     }
   }
 }
@@ -338,6 +354,39 @@ margin-left: 10rem;
   height: 28rem;
   border: solid 2px $lightgray;
 }
+
+
+
+
+/* UI ---- CommentForm.js*/
+
+.comment-form {
+width: 100%;
+  input {
+    padding: 1rem;
+    border: 1px solid $lightgray;
+    margin-bottom: 1rem;
+  }
+  textarea {
+    padding: 1rem;
+    border: 1px solid $lightgray;
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* UI ---- CommentItem.js*/
+
+.profile-comments-item {
+  display: flex;
+  align-items: center;
+  h4 {
+    margin-left: 1rem;
+    color: $orange;
+
+  }
+}
+
 
 
 

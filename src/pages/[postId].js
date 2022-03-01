@@ -18,7 +18,7 @@ import {Avatar} from "@mui/material";
 import Card from "../components/ui/Card";
 import {LOGOUT} from "../actions/types";
 import CommentForm from "../components/post/CommentForm";
-import {deleteComment, fetchComments} from "../actions/comment";
+import {fetchComments} from "../actions/comment";
 import CommentItem from "../components/post/CommentItem";
 
 
@@ -70,9 +70,8 @@ const Post = () => {
 
     const infoAuthor = (
         <div className={'info-author-article-container center col'}>
-            <Avatar alt="alt" src={session.user.image} sx={{width: 90, height: 90}}/>
+            <Avatar alt="alt" sx={{width: 90, height: 90}}>{author.name.slice(0,1)}</Avatar>
             <Separator wide margin/>
-
             <div className={'center col'}>
                 <p>Written by</p>
                 <h4>{author.name}</h4>
@@ -115,7 +114,7 @@ const Post = () => {
                     <div className={'text-article-container col'}>
                         {boldParagraph}
                         <div className={'second-paragraph row'}>
-                            <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body, 6)}</p>
+                            <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body, 8)}</p>
                         </div>
 
                         <div className={'rest-text-article'}>
@@ -125,28 +124,27 @@ const Post = () => {
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
                     <img src={'socials-counter.png'} alt={'socials counter'}/>
-                    <Separator wide/>
-                    <Separator wide/>
+
+
+
                     <Separator wide/>
                     <Container content className={'text-article-container'} col>
-                        {
-                            comments.map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId} deleteComment={deleteComment}/>)
-                        }
-                        <CommentForm postId={postId} addComment={addComment} dispatch={dispatch}/>
 
+                        <CommentForm postId={postId} addComment={addComment} dispatch={dispatch}/>
+                        {
+                            comments.reverse().map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId}/>)
+                        }
 
                     </Container>
+                    <Separator wide/>
 
 
-                    <Separator wide/>
-                    <Separator wide/>
-                    <Separator wide/>
                     <div className={'header-dashboard-container'}>
                         <Separator short/>
                         <h2>Related Articles</h2>
                     </div>
                     <div className={'articles-dashboard-container'}>
-                        {post.posts.slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title}
+                        {post.posts.filter(p => p.userId === author.id).slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title}
                                                                       body={p.body}/>)}
                     </div>
                 </Container>
