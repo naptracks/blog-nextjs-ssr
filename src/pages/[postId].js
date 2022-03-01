@@ -39,7 +39,7 @@ const Post = () => {
         userId
     } = post.post
     const user = useSelector(s => s.user)
-    const author = user.users.find(u => u.id === userId) || 'loading...'
+    const author = user.users.find(u => u.id === userId) || {name: 'loading...'}
     const comments = useSelector(s => s.comments.comments)
 
 
