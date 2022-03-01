@@ -1,8 +1,6 @@
 import {api} from '../utils/api';
 import {
     ADD_COMMENT,
-    REMOVE_COMMENT,
-    POST_ERROR,
     FETCH_COMMENTS
 } from './types';
 
@@ -16,42 +14,27 @@ export const fetchComments = (postId) => async dispatch => {
             payload: comments
         })
     } catch (err) {
-       console.log(err)
+        console.log(err)
     }
 }
 
 // Add comment
-export const addComment = (postId, formData) => async dispatch => {
-    try {
-        const res = await api.post(`/comments/${postId}`, formData);
+export const addComment = (comment, dispatch) => {
 
-        dispatch({
-            type: ADD_COMMENT,
-            payload: res.data
-        });
-
-    } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-    }
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            name: comment.name,
+            body: comment.body,
+            email: comment.email,
+            postId: comment.postId
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => dispatch({type: ADD_COMMENT, payload: data}));
 };
 
-// Delete comment
-export const deleteComment = (postId, commentId) => async dispatch => {
-    try {
-        await api.delete(`/comments/${postId}/${commentId}`);
 
-        dispatch({
-            type: REMOVE_COMMENT,
-            payload: commentId
-        });
-
-    } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-    }
-};

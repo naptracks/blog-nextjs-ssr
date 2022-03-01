@@ -17,6 +17,7 @@ export default function(state = initialState, action) {
         case ADD_COMMENT:
             return {
                 ...state,
+                comments: [...state.comments, payload ],
                 loading: false
             };
         case FETCH_COMMENTS:

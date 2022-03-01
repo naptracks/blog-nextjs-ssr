@@ -4,6 +4,7 @@ import React, {Fragment, useEffect, useLayoutEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getPost, getPosts} from "../actions/post";
 import {fetchUsers} from "../actions/users";
+import {addComment} from "../actions/comment";
 //components
 import Home from "./index";
 import Layout from "../components/layout/Layout";
@@ -11,14 +12,13 @@ import Container from "../components/layout/Container";
 //auth
 import {signOut, useSession} from "next-auth/react";
 //tools
-import {capitalizeAllFirstLetters, punctuation, bigLetter, makeBodyLarger, chunkWords} from "../utils/stringTools";
+import {capitalizeAllFirstLetters, punctuation, bigLetter, chunkWords} from "../utils/stringTools";
 import Separator from "../components/layout/Separator";
 import {Avatar} from "@mui/material";
 import Card from "../components/ui/Card";
 import {LOGOUT} from "../actions/types";
 import CommentForm from "../components/post/CommentForm";
 import {deleteComment, fetchComments} from "../actions/comment";
-import comments from "../reducers/comments";
 import CommentItem from "../components/post/CommentItem";
 
 
@@ -126,12 +126,20 @@ const Post = () => {
                     </div>
                     <img src={'socials-counter.png'} alt={'socials counter'}/>
                     <Separator wide/>
+                    <Separator wide/>
+                    <Separator wide/>
+                    <Container content className={'text-article-container'} col>
+                        {
+                            comments.map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId} deleteComment={deleteComment}/>)
+                        }
+                        <CommentForm postId={postId} addComment={addComment} dispatch={dispatch}/>
 
-                    {
-                        comments.map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId} deleteComment={deleteComment}/>)
-                    }
-                    <CommentForm postId={postId}/>
 
+                    </Container>
+
+
+                    <Separator wide/>
+                    <Separator wide/>
                     <Separator wide/>
                     <div className={'header-dashboard-container'}>
                         <Separator short/>

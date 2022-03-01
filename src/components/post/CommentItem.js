@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {capitalizeAllFirstLetters, punctuation} from "../../utils/stringTools";
 
 const CommentItem = (props) => {
 
@@ -12,7 +12,7 @@ const CommentItem = (props) => {
         deleteComment
     } = props
 
-    console.log(name)
+
 
     return <div className='post bg-white p-1 my-1'>
         <div>
@@ -20,16 +20,9 @@ const CommentItem = (props) => {
             <h4>{email}</h4>
         </div>
         <div>
-            <h4>{name}</h4>
-            <p className='my-1'>{text}</p>
+            <h4>{capitalizeAllFirstLetters(name)}</h4>
+            <p className='my-1'>{punctuation(text)}</p>
 
-            <button
-                onClick={() => deleteComment(postId, id)}
-                type='button'
-                className='btn btn-danger'
-            >
-                <i className='fas fa-times'/>
-            </button>
         </div>
     </div>
 };
