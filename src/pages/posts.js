@@ -16,6 +16,7 @@ import {getPosts} from "../redux/actions/post";
 // auth
 import {signOut, useSession} from "next-auth/react";
 import setAuthToken from "../utils/setAuthToken";
+import {useData} from "../context/LangContext";
 
 
 // PAGE: Posts.js
@@ -29,6 +30,8 @@ const Posts = () => {
     const posts = useSelector(s => s.post.posts)
     const {data: session} = useSession()
     const router = useRouter()
+    const data = useData()
+
 
     // async
     useEffect(() => {
@@ -43,7 +46,7 @@ const Posts = () => {
                 <Container content col>
                     <div className={'header-dashboard-container'}>
                         <Separator short/>
-                        <h2>Find The Best Articles</h2>
+                        <h2>{data.posts.title}</h2>
                     </div>
 
                     {/*All posts*/}
@@ -52,13 +55,13 @@ const Posts = () => {
                             .slice(0, n)
                             .map((p, key) =>
                                 <Fragment key={key}>
-                                    <Card router={router} id={p.id} title={p.title} body={p.body}/>
+                                    <Card data={data.card} router={router} id={p.id} title={p.title} body={p.body}/>
                                 </Fragment>
                             )
                         }
                     </div>
                     <div className={'header-dashboard-container'}>
-                        <Button onClick={() => setN(state => state + 12)}>Load More Articles</Button>
+                        <Button onClick={() => setN(state => state + 12)}>{data.posts.loadButton}</Button>
                     </div>
                 </Container>
             </Layout>

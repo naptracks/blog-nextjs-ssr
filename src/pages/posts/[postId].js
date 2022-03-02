@@ -19,6 +19,7 @@ import CommentForm from "../../components/ui/comments/CommentForm";
 import {fetchComments} from "../../redux/actions/comment";
 import CommentItem from "../../components/ui/comments/CommentItem";
 import setAuthToken from "../../utils/setAuthToken";
+import {useData} from "../../context/LangContext";
 
 
 // PAGE Article [postId].js
@@ -29,6 +30,7 @@ const Post = () => {
     const {postId} = router.query
     const {data: session} = useSession()
     const dispatch = useDispatch();
+    const data = useData();
 
     // async + check token
     useEffect(() => {
@@ -64,7 +66,7 @@ const Post = () => {
             <Avatar alt="alt" sx={{width: 90, height: 90}}>{author.name.slice(0,1)}</Avatar>
             <Separator wide margin/>
             <div className={'center col'}>
-                <p>Written by</p>
+                <p>{data.post.author}</p>
                 <h4>{author.name}</h4>
             </div>
 
@@ -120,7 +122,7 @@ const Post = () => {
                     <Separator wide/>
                     <Container content className={'text-article-container'} col>
 
-                        <CommentForm postId={postId}
+                        <CommentForm data={data.post.comment} postId={postId}
                                      addComment={addComment}
                                      dispatch={dispatch}/>
                         {
@@ -135,14 +137,14 @@ const Post = () => {
                     {/*Related Articles*/}
                     <div className={'header-dashboard-container'}>
                         <Separator short/>
-                        <h2>Related Articles</h2>
+                        <h2>{data.post.related}</h2>
                     </div>
                     <div className={'articles-dashboard-container'}>
                         {post.posts
                             .filter(p => p.userId === author.id)
                             .slice(0, 3)
                             .map((p, key) =>
-                            <Fragment key={key}><Card router={router} id={p.id} title={p.title} body={p.body}/></Fragment>)
+                            <Fragment key={key}><Card data={data.card} router={router} id={p.id} title={p.title} body={p.body}/></Fragment>)
                         }
                     </div>
                 </Container>

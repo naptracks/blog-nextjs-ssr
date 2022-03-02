@@ -7,7 +7,6 @@ import setAuthToken from "../utils/setAuthToken";
 // auth
 import {useSession, signIn, signOut} from "next-auth/react"
 import {useDispatch} from "react-redux";
-
 // HOME PAGE
 // route = '/'
 
@@ -16,15 +15,16 @@ export default function Home() {
     const dispatch = useDispatch()
     const router = useRouter();
 
+
     useEffect(() => {
+
         setAuthToken(session,  dispatch)
-        if (session) {
-        }
     },[router,  session, dispatch])
 
 
+
             if (session) {
-                router.push('/posts', '/posts', { locale: 'fr' })
+                router.push('/posts', '/posts', { locale: router.defaultLocale })
             }
             return (
                 <Fragment>
@@ -33,7 +33,6 @@ export default function Home() {
                     </Layout>
                 </Fragment>
             )
-
 }
 
 

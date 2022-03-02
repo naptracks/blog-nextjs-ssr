@@ -4,6 +4,8 @@ import {useRouter} from "next/router";
 import Image from 'next/image'
 import cn from 'classnames';
 import {Avatar} from "@mui/material";
+import LocaleSwitcher from "./LocaleSwitcher";
+import {useData} from "../../context/LangContext";
 
 
 
@@ -12,6 +14,8 @@ import {Avatar} from "@mui/material";
 const Navbar = ({user, signOut}) => {
     const [isOpen, setIsOpen] = useState(false)
     const router = useRouter()
+    const data = useData().common.navbar;
+
 
 
 
@@ -19,13 +23,13 @@ const Navbar = ({user, signOut}) => {
     const leftSide = (
         <div className={'left-side-navbar-container'}>
             <Image src={'/search.png'}  alt={'dehef-tech'} width={'30px'} height={'30px'}/>
-            <h4>SEARCH</h4>
+            <h4>{data.search.toUpperCase()}</h4>
         </div>
     )
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
-            <img onClick={() => user && router.push('/posts', '/posts', {locale: 'fr'})  } src={'/logo.png'} alt={'logo'}/>
+            <img onClick={() => user && router.push('/posts', '/posts', {locale: router.locale})  } src={'/logo.png'} alt={'logo'}/>
             <button onClick={() => setIsOpen(state => !state)}>
                 MENU
             </button>
@@ -35,29 +39,16 @@ const Navbar = ({user, signOut}) => {
 
     // RIGHT SIDE OF NAVBAR
 
-    const handleClick = () => {
-        router.push('/')
-        signOut()
-    }
-
-    const {
-        pathname,
-        asPath,
-        query
-    } = router
 
 
 
-    const lang = () => {
-        router.push({pathname, query}, asPath, {locale: nextLocale})
-    }
 
 
     const rightSide = (
         <div className={'right-side-navbar-container'}>
             {user ?
-                <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>SIGN OUT</h4>
-                : <div>SIGN IN</div>}
+                <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>{data.signOut.toUpperCase()}</h4>
+                : <div>{data.signIn.toUpperCase()}</div>}
             {user ?
                 <Avatar alt="alt" src={user.image}/>
                 : <img className={'img-right-side-navbar'} src={'/profile.png'} alt={'profile'}/>}
@@ -66,7 +57,7 @@ const Navbar = ({user, signOut}) => {
     )
 
 
-    const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
+    const fakeLinks = data.fakeLinks
         .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
 
 
@@ -87,6 +78,8 @@ const Navbar = ({user, signOut}) => {
                 <div className={'navbar center'}>
                     {leftSide}
                     {logo}
+                    {/*<button onClick={langUpdate}>{lang}</button>*/}
+                    <LocaleSwitcher/>
                     {rightSide}
                 </div>
                 {menuBox}
