@@ -6,6 +6,7 @@ import {getPost, getPosts} from "../../redux/actions/post";
 import {fetchUsers} from "../../redux/actions/users";
 import {addComment, fetchComments} from "../../redux/actions/comment";
 //components
+import Image from "next/image";
 import Layout from "../../components/layout/Layout";
 import Container from "../../components/layout/Container";
 import {Avatar} from "@mui/material";
@@ -119,7 +120,7 @@ const Post = () => {
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
 
-                    <img src={'/socials-counter.png'} alt={'socials counter'}/>
+                    <img  src={'/socials-counter.png'} alt={'socials counter'}/>
 
                     {/*Comments*/}
                     <Separator wide/>

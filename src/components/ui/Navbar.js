@@ -23,27 +23,36 @@ const Navbar = ({user, signOut, data}) => {
             <h4>{data.search.toUpperCase()}</h4>
         </div>
     )
+
+
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
             <img onClick={() => user && router.push('/posts', '/posts', {locale: router.locale})  } src={'/logo.png'} alt={'logo'}/>
-            <button onClick={() => setIsOpen(state => !state)}>
-                MENU
-            </button>
+            <div className={'row align-center'}>
+                <button className={'m-r-1'} onClick={() => setIsOpen(state => !state)}>
+                    MENU
+                </button>
+            </div>
         </div>
     )
 
 
     // RIGHT SIDE OF NAVBAR
+
+    const logButton = user ?
+        <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>{data.signOut.toUpperCase()}</h4>
+        : <div>{data.signIn.toUpperCase()}</div>
+
+    const avatar = user ?
+        <Avatar alt="alt" src={user.image}/>
+        : <img className={'img-right-side-navbar'} src={'/profile.png'} alt={'profile'}/>
+
     const rightSide = (
         <div className={'right-side-navbar-container'}>
-            {user ?
-                <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>{data.signOut.toUpperCase()}</h4>
-                : <div>{data.signIn.toUpperCase()}</div>}
-            {user ?
-                <Avatar alt="alt" src={user.image}/>
-                : <img className={'img-right-side-navbar'} src={'/profile.png'} alt={'profile'}/>}
-            <img className={'img-right-side-navbar'} src={'/cart.png'} alt={'cart'}/>
+            {logButton}
+            {avatar}
+            <LocaleSwitcher/>
         </div>
     )
 
@@ -54,24 +63,25 @@ const Navbar = ({user, signOut, data}) => {
 
     // MENU BOX: OPEN WITH STATE
     const menuBox = (
-        <div className={cn('menu-container', {'open': isOpen})}>
+        <div className={cn('menu-container')}>
+            <LocaleSwitcher/>
+            {logButton}
             {fakeLinks}
-            {leftSide}
-            {rightSide}
         </div>
     )
 
 
+
     return (
         <Fragment>
+            {isOpen && menuBox}
             <div className={cn('navbar-container', {'fixedOnTop': isOpen})}>
                 <div className={'navbar center'}>
                     {leftSide}
                     {logo}
-                    <LocaleSwitcher/>
                     {rightSide}
                 </div>
-                {menuBox}
+
                 <div className={'fake-links-container center'}>
                     {fakeLinks}
                 </div>

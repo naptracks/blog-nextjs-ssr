@@ -17,7 +17,10 @@ export const db = {
 
         },
         home: {
-            login: 'Connection'
+            login: 'Connection',
+            github: 'Connecte avec GitHub',
+            google: 'Connecte avec Google',
+            facebook: 'Connecte avec Facebook',
         },
         posts: {
             title: 'Trouve les meilleurs articles',
@@ -54,7 +57,10 @@ export const db = {
             }
         },
         home: {
-            login: 'Login'
+            login: 'Sign In',
+            github: 'Sign in with GitHub',
+            google: 'Sign in with Google',
+            facebook: 'Sign in with Facebook',
         },
         posts: {
             title: 'Find The Best Articles',

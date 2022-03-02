@@ -7,7 +7,7 @@ import setAuthToken from "../utils/setAuthToken";
 // auth
 import {useSession, signIn, signOut} from "next-auth/react"
 import {useDispatch} from "react-redux";
-import {useData, useLangUpdate, useLang} from "../context/LangContext";
+import {useData, useLangUpdate} from "../context/LangContext";
 // HOME PAGE
 // route = '/'
 
@@ -31,7 +31,7 @@ export default function Home() {
             return (
                 <Fragment>
                     <Layout data={data.common} center>
-                        <Login signIn={signIn} signOut={signOut}/>
+                        <Login data={data.home} signIn={signIn} signOut={signOut}/>
                     </Layout>
                 </Fragment>
             )

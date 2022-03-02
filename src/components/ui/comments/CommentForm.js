@@ -1,6 +1,5 @@
 import {Fragment, useState} from 'react';
 import {Button} from "@mui/material";
-import { makeStyles } from '@mui/styles';
 import Separator from "../../layout/Separator";
 
 const CommentForm = (props) => {
@@ -13,8 +12,6 @@ const CommentForm = (props) => {
         body: '',
         postId
     }
-
-
 
     const [comment, setComment] = useState(initialState);
 
@@ -29,11 +26,9 @@ const CommentForm = (props) => {
         setComment(initialState);
     }
 
-
-
     return (
         <Fragment>
-            <div className={'col center'}>
+            <div className={'col center p-t-4'}>
                 <Separator short/>
                 <h3>{data.title}</h3>
 

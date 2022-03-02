@@ -13,7 +13,7 @@ import {useSelector, useDispatch} from "react-redux";
 
 // Login.js module
 
-const Login = ({signIn}) => {
+const Login = ({signIn, data}) => {
     //
     // const [formData, setFormData] = useState({
     //     email: '',
@@ -33,7 +33,7 @@ const Login = ({signIn}) => {
     return (
         <Fragment>
             <div className={'login-box col center'}>
-                    <h1>Login</h1>
+                    <h1>{data.login}</h1>
                 <Separator short/>
 
                 {/*<Box*/}
@@ -64,9 +64,9 @@ const Login = ({signIn}) => {
                 {/*</Box>*/}
                 <div className={'col center'}>
                     {/*<Button type={'submit'} onClick={(e) => onSubmit(e)}>Connect</Button>*/}
-                    <button className={'github-button'} onClick={() => signIn('github')}>Sign in with GitHub</button>
-                    <button className={'facebook-button'} onClick={() => signIn('facebook')}>Sign in with Facebook</button>
-                    <button className={'google-button'} onClick={() => signIn('google')}>Sign in with Google</button>
+                    <button className={'github-button'} onClick={() => signIn('github')}>{data.github}</button>
+                    <button className={'facebook-button'} onClick={() => signIn('facebook')}>{data.facebook}</button>
+                    <button className={'google-button'} onClick={() => signIn('google')}>{data.google}</button>
                 </div>
             </div>
         </Fragment>

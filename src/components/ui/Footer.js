@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import Image from "next/image";
 import Container from "../layout/Container";
-import {useData} from "../../context/LangContext";
 
 const Footer = ({data}) => {
     const topBrands = ['TOP BRANDS', 'Flint and Tinder', 'Astorflex', 'Taylor Stitch', 'Timex', 'Top Design']
@@ -46,7 +45,7 @@ const Footer = ({data}) => {
                         </div>
                     </Container>
                 </div>
-                <div className={'socials-footer-container justify-center'}>
+                <div className={'socials-footer-container'}>
                     <Container content flexStart>
                         <img src={'/socials.png'} alt={'socials'}/>
                         <p>{data.copyrights}</p>

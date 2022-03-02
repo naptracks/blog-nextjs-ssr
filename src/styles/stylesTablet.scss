@@ -1,7 +1,30 @@
 /* Styles for tablet screen: from 1250px */
 @import "settings/_colors";
 
-@media (min-width: 710px) {
+@media (min-width: 810px) {
+
+
+
+  /**************** PAGES ****************/
+
+
+  /* PAGE --- Article [postId].js*/
+
+  .articles-dashboard-container {
+    //justify-content: space-between;
+
+    //width: 100%;
+    //height: 100%;
+    //display: flex;
+    //flex-wrap: wrap;
+  }
+
+  .text-article-container {
+    width: 50%
+  }
+
+
+
 
 
   /**************** UI ****************/
@@ -12,40 +35,107 @@
     align-items:  center;
   }
 
-  /* Footer */
+  /* Navbar.js */
 
-
-  .top-footer-container {
-    display: flex;
-    width: 100%;
+  .navbar {
+    padding: 0 6rem;
   }
 
-  .marketing {
-    img {
-      margin-right: .75rem ;
-      margin-bottom: 2px;
+  .left-side-navbar-container {
+  display: none;
+  }
+
+  .left-side-navbar-container img {
+    padding-right: 1.5rem !important;
+  }
+
+
+  .logo-container {
+    min-width: 50%;
+    justify-content: start;
+    button {
+      display: none;
     }
   }
 
-  .email {
-    input {
+  .logo-container h4 {
+    display: none;
+  }
+
+  .right-side-navbar-container {
+    display: flex;
+    //width: 25%;
+    justify-content: flex-end;
+    align-items: center;
+
+    .img-right-side-navbar {
+      margin-left: 2rem;
+    }
+    h4 {
       margin-right: 2rem;
-      width: 30rem;
-      height: 4rem;
-      border: 1px solid $lightgray;
-      padding-left: 1rem;
     }
     button {
-      height: 4rem;
-      border: 2px solid $dark;
       background: none;
-      h4 {
-        padding: 0 3.5rem;
-        width: max-content;
-      }
+      border: none;
+      cursor: pointer;
     }
-
   }
 
-// end of tablet styles
+  .fake-links-container {
+    display: flex;
+    margin: auto;
+    width: 65%;
+    height: 4rem;
+  }
+  .fake-link {
+    margin: auto;
+  }
+  .fake-link:hover {
+    cursor: pointer;
+  }
+
+  .menu-container {
+    display: none !important;
+  }
+
+
+  /* Footer */
+
+  .socials-footer-container .content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .socials-footer-container {
+    width: 100%;
+    background-color: $ultra-lightgray;
+    img {
+      padding-bottom: 2rem;
+      margin-right: 2rem;
+    }
+    p {
+      margin: -2px 0 0 0;
+    }
+  }
+
+  .logo-footer-container {
+    align-items: flex-start;
+    width: 20rem;
+    height: 100%;
+    padding-top: 4.3rem;
+    display: flex;
+    //justify-content: center;
+    //align-items: center;
+  }
+
+  // Card
+
+  .card-container {
+    margin: 1rem;
+  }
+
+
+  // end of tablet styles
 }
