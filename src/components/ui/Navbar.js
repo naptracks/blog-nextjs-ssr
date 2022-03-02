@@ -23,7 +23,7 @@ const Navbar = ({user, signOut, data, searchValue}) => {
         <div className={'left-side-navbar-container'}>
             <Image onClick={() => setSearching(!searching)} src={'/search.png'}  alt={'dehef-tech'} width={'30px'} height={'30px'}/>
             { !searching ?
-                <h4>{data.search.toUpperCase()}</h4>
+                <h4 onClick={() => setSearching(!searching)}>{data.search.toUpperCase()}</h4>
                 : <input className={'search-input'} value={searchValue} placeholder={data.search.toUpperCase()}/>}
         </div>
     )
