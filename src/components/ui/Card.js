@@ -14,7 +14,7 @@ const Card = ({id, title, body, router, data}) => {
                 <h3>{capitalizeAllFirstLetters(title, 3)}</h3>
                 <p>{punctuation(body, 10)}</p>
                 <div className={'read-more-container'}>
-                    <p onClick={() => router.push(`/posts/${id}`, `/posts/${id}`, {locale: 'fr'})}
+                    <p onClick={() => router.push(`/posts/${id}`, `/posts/${id}`, {locale: router.locale})}
                        className={'read-more'}>{data.readMore}</p>
                     <img src={'/arrow.png'} alt={'read more'}/>
                 </div>
