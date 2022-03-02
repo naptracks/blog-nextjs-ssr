@@ -49,7 +49,7 @@ const CommentForm = (props) => {
                 <textarea
                     name='body'
                     rows='5'
-                    placeholder='Write something fun here...'
+                    placeholder={data.placeholder}
                     value={comment.body}
                     onChange={e => onChange(e)}
                     required

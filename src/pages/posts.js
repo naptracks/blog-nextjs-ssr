@@ -16,7 +16,7 @@ import {getPosts} from "../redux/actions/post";
 // auth
 import {signOut, useSession} from "next-auth/react";
 import setAuthToken from "../utils/setAuthToken";
-import {useData} from "../context/LangContext";
+import {useData, useLangUpdate} from "../context/LangContext";
 
 
 // PAGE: Posts.js
@@ -31,18 +31,19 @@ const Posts = () => {
     const {data: session} = useSession()
     const router = useRouter()
     const data = useData()
-
+    const locale = useLangUpdate()
 
     // async
     useEffect(() => {
+        locale(router.locale)
         setAuthToken(session,  dispatch)
         dispatch(getPosts())
-    }, [session])
+    }, [session, router.locale])
 
 
     return (
         <Fragment>
-            <Layout user={session.user} singOut={() => signOut()}>
+            <Layout data={data.common} user={session.user} singOut={() => signOut()}>
                 <Container content col>
                     <div className={'header-dashboard-container'}>
                         <Separator short/>

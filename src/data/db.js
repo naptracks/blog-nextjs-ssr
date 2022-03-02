@@ -33,7 +33,7 @@ export const db = {
                 button: 'Commenter',
                 email: 'Email',
                 name: 'Titre',
-                textarea: 'Ecris une blague...'
+                placeholder: 'Ecris une blague...'
             },
             related: 'Article Du Même Auteur '
         }
@@ -70,7 +70,7 @@ export const db = {
                 button: 'Add a comment',
                 email: 'Email',
                 name: 'Title',
-                textarea: 'Write something fun here...'
+                placeholder: 'Write something fun here...'
             },
             related: 'Related Articles'
         }

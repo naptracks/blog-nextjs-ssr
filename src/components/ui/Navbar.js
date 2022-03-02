@@ -5,18 +5,18 @@ import Image from 'next/image'
 import cn from 'classnames';
 import {Avatar} from "@mui/material";
 import LocaleSwitcher from "./LocaleSwitcher";
-import {useData} from "../../context/LangContext";
 
 
 
 // COMPONENT: <Navbar/>
 
-const Navbar = ({user, signOut}) => {
+const Navbar = ({user, signOut, data}) => {
     const [isOpen, setIsOpen] = useState(false)
     const router = useRouter()
-    const data = useData().common.navbar;
 
 
+    console.log(data)
+    console.log(router.locale)
 
 
     // LEFT SIDE OF NAVBAR

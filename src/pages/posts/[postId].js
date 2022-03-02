@@ -19,7 +19,7 @@ import CommentForm from "../../components/ui/comments/CommentForm";
 import {fetchComments} from "../../redux/actions/comment";
 import CommentItem from "../../components/ui/comments/CommentItem";
 import setAuthToken from "../../utils/setAuthToken";
-import {useData} from "../../context/LangContext";
+import {useData, useLangUpdate} from "../../context/LangContext";
 
 
 // PAGE Article [postId].js
@@ -31,9 +31,12 @@ const Post = () => {
     const {data: session} = useSession()
     const dispatch = useDispatch();
     const data = useData();
+    const locale = useLangUpdate()
+
 
     // async + check token
     useEffect(() => {
+        locale(router.locale)
         setAuthToken(session,  dispatch)
         dispatch(fetchUsers())
         dispatch(getPost(postId))
@@ -75,7 +78,7 @@ const Post = () => {
 
     //RENDER
     return <Fragment>
-            <Layout user={session.user} singOut={() => signOut()}>
+            <Layout data={data.common} user={session.user} singOut={() => signOut()}>
                 <Container content center col className={'article-container relative'}>
 
                     {/* Title + Image */}

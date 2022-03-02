@@ -3,13 +3,11 @@ import Image from "next/image";
 import Container from "../layout/Container";
 import {useData} from "../../context/LangContext";
 
-const Footer = () => {
-    const topBrands = ['TOP BRANDS', 'Flint and Tinder', 'Astorflex', 'Taylor Stitch', 'Timex', 'Topo Design']
+const Footer = ({data}) => {
+    const topBrands = ['TOP BRANDS', 'Flint and Tinder', 'Astorflex', 'Taylor Stitch', 'Timex', 'Top Design']
     const topGoods = ['TOP GOODS', 'Watches', 'Clothing', 'Footwear', 'Everyday Carry']
     const ourStory = ['OUR STORY', 'Jobs', 'Affiliates', 'Gift Cards', 'Contact Us']
     const support = ['SUPPORT', 'Shipping and Delivery', 'Returns Policy', 'Privacy Policy']
-
-    const data = useData().common.footer;
 
     const extraMenu = (array) => (
         <div className={'extra-menu-footer'}>

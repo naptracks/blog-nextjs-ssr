@@ -6,15 +6,15 @@ import Container from "../layout/Container";
 
 // Layout.jst provides a navbar, footer and a main container
 
-const Layout = ({children, center, user, singOut}) => {
+const Layout = ({children, center, user, singOut, data}) => {
 
     return (
         <Fragment>
-            <Navbar user={user} signOut={singOut}/>
+            <Navbar data={data.navbar} user={user} signOut={singOut}/>
             <Container layout center={center}>
             {children}
             </Container>
-            <Footer/>
+            <Footer data={data.footer}/>
         </Fragment>
     )
 };

@@ -27,26 +27,29 @@ export default function App({Component, pageProps: {session, ...pageProps}}) {
             {
                 Component.auth ? (
                         <Auth>
-                            <LangProvider>
-                                <Provider store={store}>
-                                    <Head>
-                                        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                                        <title>Dehef Blog</title>
-                                    </Head>
+
+                            <Provider store={store}>
+                                <Head>
+                                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                                    <title>Dehef Blog</title>
+                                </Head>
+                                <LangProvider>
                                     <Component {...pageProps}/>
-                                </Provider>
-                            </LangProvider>
+                                </LangProvider>
+                            </Provider>
+
                         </Auth>
                     ) :
-                <LangProvider>
+
                     <Provider store={store}>
                         <Head>
                             <meta name="viewport" content="width=device-width, initial-scale=1"/>
                             <title>Dehef Blog</title>
                         </Head>
-                        <Component {...pageProps}/>
+                        <LangProvider>
+                            <Component {...pageProps}/>
+                        </LangProvider>
                     </Provider>
-                </LangProvider>
             }
 
         </SessionProvider>
