@@ -11,9 +11,10 @@ import LocaleSwitcher from "./LocaleSwitcher";
 // COMPONENT: <Navbar/>
 
 const Navbar = ({user, signOut, data}) => {
-
-    const [isOpen, setIsOpen] = useState(false)
+    // settings
     const router = useRouter()
+    const [isOpen, setIsOpen] = useState(false)
+    const pointer = {cursor: 'pointer'}
 
 
     // LEFT SIDE OF NAVBAR
@@ -26,12 +27,19 @@ const Navbar = ({user, signOut, data}) => {
 
 
     // CENTER OF NAVBAR: LOGO
+
+    const menu = <div className="menu">
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+    </div>
+
     const logo = (
         <div className={'logo-container'}>
             <img onClick={() => user && router.push('/posts', '/posts', {locale: router.locale})  } src={'/logo.png'} alt={'logo'}/>
             <div className={'row align-center'}>
-                <button className={'m-r-1'} onClick={() => setIsOpen(state => !state)}>
-                    MENU
+                <button style={pointer} className={'m-r-1'} onClick={() => setIsOpen(state => !state)}>
+                    {menu}   {/*<img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjNjA3RDhCIiBkPSJNNiAyMkg0MlYyNkg2ek02IDEwSDQyVjE0SDZ6TTYgMzRINDJWMzhINnoiPjwvcGF0aD48L3N2Zz4="/>*/}
                 </button>
             </div>
         </div>
@@ -40,8 +48,9 @@ const Navbar = ({user, signOut, data}) => {
 
     // RIGHT SIDE OF NAVBAR
 
+
     const logButton = user ?
-        <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>{data.signOut.toUpperCase()}</h4>
+        <h4 style={pointer} onClick={() => signOut()}>{data.signOut.toUpperCase()}</h4>
         : <div>{data.signIn.toUpperCase()}</div>
 
     const avatar = user ?
@@ -57,25 +66,23 @@ const Navbar = ({user, signOut, data}) => {
     )
 
     const fakeLinks = data.fakeLinks
-        .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
-
+        .map(fl =>  <h4 style={pointer} key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
 
 
     // MENU BOX: OPEN WITH STATE
     const menuBox = (
-        <div className={cn('menu-container')}>
+        <div className={cn('menu-container', {'fixed': isOpen})}>
+
             <LocaleSwitcher/>
             {logButton}
             {fakeLinks}
         </div>
     )
 
-
-
     return (
         <Fragment>
-            {isOpen && menuBox}
             <div className={cn('navbar-container', {'fixedOnTop': isOpen})}>
+                {isOpen && menuBox}
                 <div className={'navbar center'}>
                     {leftSide}
                     {logo}

@@ -8,6 +8,9 @@ import setAuthToken from "../utils/setAuthToken";
 import {useSession, signIn, signOut} from "next-auth/react"
 import {useDispatch} from "react-redux";
 import {useData, useLangUpdate} from "../context/LangContext";
+
+
+
 // HOME PAGE
 // route = '/'
 
@@ -18,6 +21,7 @@ export default function Home() {
     const data = useData()
     const locale = useLangUpdate()
 
+    // check token & set locale according to locale detection
     useEffect(() => {
         locale(router.locale)
         setAuthToken(session,  dispatch)

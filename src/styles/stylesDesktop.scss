@@ -25,6 +25,11 @@
     }
   }
 
+
+  .articles-dashboard-container {
+    justify-content: space-between;
+  }
+
   .text-article-container {
     width: 50%;
   }
@@ -66,9 +71,7 @@
   }
 
   .right-side-navbar-container {
-    //display: flex;
     width: 25%;
-    //justify-content: center !important;
 
   }
 
@@ -143,7 +146,6 @@
   .socials-footer-container .content {
     display: flex;
     flex-direction: row;
-    //align-items: flex-start;
     justify-content: flex-start !important;
   }
 
@@ -155,8 +157,6 @@
 
   .logo-footer-container {
     display: initial;
-    //justify-content: center;
-    //align-items: center;
   }
 
 

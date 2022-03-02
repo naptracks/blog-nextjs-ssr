@@ -73,7 +73,6 @@ const Post = () => {
                 <p>{data.post.author}</p>
                 <h4>{author.name}</h4>
             </div>
-
         </div>
     )
 
@@ -131,7 +130,6 @@ const Post = () => {
                                      dispatch={dispatch}/>
                         {
                             comments
-                                .reverse()
                                 .map(c => <Fragment key={c.id}><CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId}/></Fragment>)
                         }
 

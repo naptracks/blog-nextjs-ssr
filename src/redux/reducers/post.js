@@ -16,7 +16,6 @@ const initialState = {
         title: ' ',
         userId: ' ',
     },
-    loading: true,
     error: {}
 };
 
@@ -28,49 +27,28 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 posts: payload,
-                loading: false
             };
         case GET_POST:
             return {
                 ...state,
                 post: payload,
-                loading: false
             };
         case ADD_POST:
             return {
                 ...state,
                 posts: [payload, ...state.posts],
-                loading: false
             };
         case DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => post.id !== payload),
-                loading: false
             };
         case POST_ERROR:
             return {
                 ...state,
                 error: payload,
-                loading: false
             };
-        case ADD_COMMENT:
-            return {
-                ...state,
-                post: { ...state.post, comments: payload },
-                loading: false
-            };
-        case REMOVE_COMMENT:
-            return {
-                ...state,
-                post: {
-                    ...state.post,
-                    comments: state.post.comments.filter(
-                        comment => comment.id !== payload
-                    )
-                },
-                loading: false
-            };
+
         default:
             return state;
     }
