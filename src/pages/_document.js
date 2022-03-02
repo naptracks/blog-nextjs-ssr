@@ -15,14 +15,15 @@ function createEmotionCache() {
 export default class MyDocument extends Document {
     render() {
         return (
-            <Html lang="en">
+            <Html>
                 <Head>
+                    <link rel="shortcut icon" href="/favicon.ico"/>
                     <link rel="preconnect" href="https://fonts.googleapis.com"/>
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
                     <link
                         href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=League+Spartan&family=Lora&display=swap"
                         rel="stylesheet"/>
-                    <link rel="shortcut icon" href="/public/favicon.ico"/>
+
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -33,6 +34,7 @@ export default class MyDocument extends Document {
                 <body>
                 <Main/>
                 <NextScript/>
+
                 </body>
             </Html>
         );

@@ -1,7 +1,9 @@
 export const chunkWords = (string, n) => {
     const words = string.split(' ')
     if(words.length > n) {
-        return words.slice(0, n).join(' ')
+        return words
+            .slice(0, n)
+            .join(' ')
     }
     return string
 }
@@ -27,14 +29,4 @@ export const bigLetter = (input) => {
     const firstLetter = capitalizeAllFirstLetters(input[0])
     const rest = input.slice(1)
     return {firstLetter,  rest}
-}
-
-export const makeBodyLarger = (input, n) => {
-    let bodyArray = []
-    for (let i = 0; i < n; n++) {
-        bodyArray.push(punctuation(input))
-    }
-    const body = bodyArray.join('.').toString()
-
-    return body
 }

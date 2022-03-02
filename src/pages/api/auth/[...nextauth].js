@@ -1,39 +1,27 @@
 import NextAuth from "next-auth"
 import GitHubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials"
+import FacebookProvider from "next-auth/providers/facebook";
+import GoogleProvider from "next-auth/providers/google";
+
 
 
 // providers for external authentications
 
 export default NextAuth({
     providers: [
-        // CredentialsProvider({
-        //     // The name to display on the sign in form (e.g. 'Sign in with...')
-        //     name: 'Credentials',
-        //
-        //
-        //     async authorize(credentials, req) {
-        //
-        //         const res = await fetch("http://localhost:3000/api/fakeAuth", {
-        //             method: 'POST',
-        //             body: JSON.stringify(credentials),
-        //             headers: { "Content-Type": "application/json" }
-        //         })
-        //         const user = await res.json()
-        //
-        //         // If no error and we have user data, return it
-        //         if (res.ok && user) {
-        //             return user
-        //         }
-        //         // Return null if user data could not be retrieved
-        //         return null
-        //     }
-        // }),
+
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET
         }),
-
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        })
     ],
     jwt: {
         signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
@@ -52,7 +40,7 @@ export default NextAuth({
             return session
         },
         async redirect({url, baseUrl}) {
-            return `${baseUrl}/posts`
+            return baseUrl
         }
     }
 })

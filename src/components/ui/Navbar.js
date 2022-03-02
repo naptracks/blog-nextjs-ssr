@@ -1,8 +1,11 @@
-import React, {Fragment, useState} from "react";
+import {Fragment, useState} from "react";
 import {useRouter} from "next/router";
+//ui
+import Image from 'next/image'
 import cn from 'classnames';
 import {Avatar} from "@mui/material";
-import {route} from "next/dist/server/router";
+
+
 
 // COMPONENT: <Navbar/>
 
@@ -11,21 +14,18 @@ const Navbar = ({user, signOut}) => {
     const router = useRouter()
 
 
-    const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
-        .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
-
 
     // LEFT SIDE OF NAVBAR
     const leftSide = (
         <div className={'left-side-navbar-container'}>
-            <img src={'search.png'} alt={'dehef-tech'} width={'30px'} height={'30px'}/>
+            <Image src={'/search.png'}  alt={'dehef-tech'} width={'30px'} height={'30px'}/>
             <h4>SEARCH</h4>
         </div>
     )
     // CENTER OF NAVBAR: LOGO
     const logo = (
         <div className={'logo-container'}>
-            <img onClick={() => router.push('/posts')} src={'logo.png'} alt={'logo'}/>
+            <img onClick={() => user && router.push('/posts', '/posts', {locale: 'fr'})  } src={'/logo.png'} alt={'logo'}/>
             <button onClick={() => setIsOpen(state => !state)}>
                 MENU
             </button>
@@ -40,13 +40,36 @@ const Navbar = ({user, signOut}) => {
         signOut()
     }
 
+    const {
+        pathname,
+        asPath,
+        query
+    } = router
+
+
+
+    const lang = () => {
+        router.push({pathname, query}, asPath, {locale: nextLocale})
+    }
+
+
     const rightSide = (
         <div className={'right-side-navbar-container'}>
-            {user ? <button onClick={() => signOut()}><h4>SIGN OUT</h4></button> : <button><h4>SIGN IN</h4></button>}
-            {user ? <Avatar alt="alt" src={user.image}/> : <img className={'img-right-side-navbar'} src={'profile.png'} alt={'profile'}/>}
-            <img className={'img-right-side-navbar'} src={'cart.png'} alt={'cart'}/>
+            {user ?
+                <h4 style={{cursor: 'pointer'}} onClick={() => signOut()}>SIGN OUT</h4>
+                : <div>SIGN IN</div>}
+            {user ?
+                <Avatar alt="alt" src={user.image}/>
+                : <img className={'img-right-side-navbar'} src={'/profile.png'} alt={'profile'}/>}
+            <img className={'img-right-side-navbar'} src={'/cart.png'} alt={'cart'}/>
         </div>
     )
+
+
+    const fakeLinks = ['new', 'for him', 'for her', 'home', 'gifts', 'sale', 'journal']
+        .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
+
+
 
     // MENU BOX: OPEN WITH STATE
     const menuBox = (
@@ -56,6 +79,7 @@ const Navbar = ({user, signOut}) => {
             {rightSide}
         </div>
     )
+
 
     return (
         <Fragment>

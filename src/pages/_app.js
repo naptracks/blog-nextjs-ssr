@@ -2,11 +2,12 @@ import '../styles/index.scss'
 import '../styles/styles.scss';
 import '../styles/stylesDesktop.scss'
 import '../styles/stylesTablet.scss'
-import {useStore} from '../helpers/store'
+import {useStore} from '../redux/store'
 import {Provider} from 'react-redux'
 import {SessionProvider, useSession} from "next-auth/react"
 import Head from 'next/head'
-import Container from "../components/layout/Container";
+import {LangProvider} from '../context/LangContext'
+
 
 function Auth({children}) {
     const {status} = useSession({required: true})
@@ -26,22 +27,26 @@ export default function App({Component, pageProps: {session, ...pageProps}}) {
             {
                 Component.auth ? (
                         <Auth>
-                            <Provider store={store}>
-                                <Head>
-                                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                                    <title>My awesome blog</title>
-                                </Head>
-                                <Component {...pageProps}/>
-                            </Provider>
+                            <LangProvider>
+                                <Provider store={store}>
+                                    <Head>
+                                        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                                        <title>Dehef Blog</title>
+                                    </Head>
+                                    <Component {...pageProps}/>
+                                </Provider>
+                            </LangProvider>
                         </Auth>
                     ) :
+                <LangProvider>
                     <Provider store={store}>
                         <Head>
                             <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                            <title>My awesome blog</title>
+                            <title>Dehef Blog</title>
                         </Head>
                         <Component {...pageProps}/>
                     </Provider>
+                </LangProvider>
             }
 
         </SessionProvider>

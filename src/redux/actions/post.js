@@ -1,15 +1,14 @@
-import {api} from '../utils/api';
+import {api} from '../../utils/api';
 import {
     GET_POSTS,
     POST_ERROR,
     GET_POST,
 } from './types';
 
-// Get posts
+// Get all posts
 export const getPosts = () => async dispatch => {
     try {
         const res = await api.get('/posts');
-        console.log(res.data)
         dispatch({
             type: GET_POSTS,
             payload: res.data
@@ -23,7 +22,7 @@ export const getPosts = () => async dispatch => {
 };
 
 
-// Get post
+// Get post by id
 export const getPost = id => async dispatch => {
     try {
         const res = await api.get(`https://jsonplaceholder.typicode.com/posts/${id}`);

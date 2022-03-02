@@ -1,4 +1,4 @@
-import {api} from '../utils/api';
+import {api} from '../../utils/api';
 import {
     ADD_COMMENT,
     FETCH_COMMENTS

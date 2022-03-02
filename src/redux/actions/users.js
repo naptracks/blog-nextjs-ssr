@@ -1,4 +1,4 @@
-import {api} from "../utils/api";
+import {api} from "../../utils/api";
 import {FETCH_USERS, POST_ERROR} from "./types";
 
 

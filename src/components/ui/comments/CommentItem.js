@@ -1,7 +1,7 @@
-import React from 'react';
-import {capitalizeAllFirstLetters, punctuation} from "../../utils/stringTools";
+import React, {Fragment} from 'react';
+import {capitalizeAllFirstLetters, punctuation} from "../../../utils/stringTools";
 import {Avatar} from "@mui/material";
-import Separator from "../layout/Separator";
+import Separator from "../../layout/Separator";
 
 const CommentItem = (props) => {
 
@@ -13,7 +13,7 @@ const CommentItem = (props) => {
 
 
 
-    return <div>
+    return <Fragment>
         <Separator wide/>
         <div className={'profile-comments-item'}>
             <Avatar>{email.slice(0,1)}</Avatar>
@@ -21,7 +21,7 @@ const CommentItem = (props) => {
         </div>
             <h4>{capitalizeAllFirstLetters(name)}</h4>
             <p>{punctuation(text)}</p>
-    </div>
+    </Fragment>
 };
 
 export default CommentItem;

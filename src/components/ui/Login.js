@@ -6,69 +6,67 @@ import Button from '@mui/material/Button';
 //components
 import Separator from "../layout/Separator";
 //actions
-import {login} from "../../actions/auth";
+import {login} from "../../redux/actions/auth";
 //redux
 import {useSelector, useDispatch} from "react-redux";
 
 
 // Login.js module
 
-const Login = ({signIn, signOut}) => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+const Login = ({signIn}) => {
+    //
+    // const [formData, setFormData] = useState({
+    //     email: '',
+    //     password: ''
+    // });
+    // const { email, password } = formData;
 
+    // const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
-    const auth = useSelector(state => state.auth)
+    // const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-
-    const { email, password } = formData;
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    const onSubmit = e => {
-        e.preventDefault();
-        dispatch(login(email, password));
-    };
+    // const onSubmit = e => {
+    //     e.preventDefault();
+    //     dispatch(login(email, password));
+    // };
 
     return (
         <Fragment>
             <div className={'login-box col center'}>
-                    <Separator short/>
-                    <h1 className={'orange'}>Login</h1>
+                    <h1>Login</h1>
+                <Separator short/>
 
+                {/*<Box*/}
+                {/*    component="form"*/}
+                {/*    sx={{*/}
+                {/*        '& .MuiTextField-root': { m: 1, width: '25ch' },*/}
+                {/*    }}*/}
+                {/*    noValidate*/}
+                {/*    autoComplete="off"*/}
+                {/*>*/}
+                {/*    <div className={'center col'}>*/}
 
-                <Box
-                    component="form"
-                    sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div className={'center col'}>
-
-                        <TextField
-                            label="email"
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={e => onChange(e)}
-                        />
-                        <TextField
-                            label="password"
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={e => onChange(e)}
-                        />
-                    </div>
-                </Box>
-                <div className={'col'}>
-                    <Button type={'submit'} onClick={(e) => onSubmit(e)}>Connect</Button>
-                    <Button onClick={() => signIn('github')}>Sign in with GitHub</Button>
+                {/*        <TextField*/}
+                {/*            label="email"*/}
+                {/*            type="email"*/}
+                {/*            name="email"*/}
+                {/*            value={email}*/}
+                {/*            onChange={e => onChange(e)}*/}
+                {/*        />*/}
+                {/*        <TextField*/}
+                {/*            label="password"*/}
+                {/*            type="password"*/}
+                {/*            name="password"*/}
+                {/*            value={password}*/}
+                {/*            onChange={e => onChange(e)}*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*</Box>*/}
+                <div className={'col center'}>
+                    {/*<Button type={'submit'} onClick={(e) => onSubmit(e)}>Connect</Button>*/}
+                    <button className={'github-button'} onClick={() => signIn('github')}>Sign in with GitHub</button>
+                    <button className={'facebook-button'} onClick={() => signIn('facebook')}>Sign in with Facebook</button>
+                    <button className={'google-button'} onClick={() => signIn('google')}>Sign in with Google</button>
                 </div>
             </div>
         </Fragment>

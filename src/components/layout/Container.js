@@ -1,6 +1,5 @@
-import React from "react";
+import React, {Fragment} from "react";
 import cn from 'classnames'
-
 
 
 const Container = (props) => {
@@ -16,7 +15,7 @@ const Container = (props) => {
         alignCenter,
     } = props
 
-    const styles = cn(className,{
+    const styles = cn(className, {
         'content': content,
         'center': center,
         'justify-center': justifyCenter,
@@ -28,11 +27,13 @@ const Container = (props) => {
     })
 
     return (
-        <div className={'container'}>
-            <div className={styles}>
-                {props.children}
+        <Fragment>
+            <div className={'container'}>
+                <div className={styles}>
+                    {props.children}
+                </div>
             </div>
-        </div>
+        </Fragment>
     )
 }
 

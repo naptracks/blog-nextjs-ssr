@@ -1,25 +1,24 @@
 import {useRouter} from 'next/router'
-import React, {Fragment, useEffect, useLayoutEffect} from "react";
+import React, {Fragment, useEffect} from "react";
 //redux
 import {useDispatch, useSelector} from "react-redux";
-import {getPost, getPosts} from "../actions/post";
-import {fetchUsers} from "../actions/users";
-import {addComment} from "../actions/comment";
+import {getPost, getPosts} from "../../redux/actions/post";
+import {fetchUsers} from "../../redux/actions/users";
+import {addComment} from "../../redux/actions/comment";
 //components
-import Home from "./index";
-import Layout from "../components/layout/Layout";
-import Container from "../components/layout/Container";
+import Layout from "../../components/layout/Layout";
+import Container from "../../components/layout/Container";
 //auth
 import {signOut, useSession} from "next-auth/react";
 //tools
-import {capitalizeAllFirstLetters, punctuation, bigLetter, chunkWords} from "../utils/stringTools";
-import Separator from "../components/layout/Separator";
+import {capitalizeAllFirstLetters, punctuation, bigLetter, chunkWords} from "../../utils/stringTools";
+import Separator from "../../components/layout/Separator";
 import {Avatar} from "@mui/material";
-import Card from "../components/ui/Card";
-import {LOGOUT} from "../actions/types";
-import CommentForm from "../components/post/CommentForm";
-import {fetchComments} from "../actions/comment";
-import CommentItem from "../components/post/CommentItem";
+import Card from "../../components/ui/Card";
+import CommentForm from "../../components/ui/comments/CommentForm";
+import {fetchComments} from "../../redux/actions/comment";
+import CommentItem from "../../components/ui/comments/CommentItem";
+import setAuthToken from "../../utils/setAuthToken";
 
 
 // PAGE Article [postId].js
@@ -30,6 +29,16 @@ const Post = () => {
     const {postId} = router.query
     const {data: session} = useSession()
     const dispatch = useDispatch();
+
+    // async + check token
+    useEffect(() => {
+        setAuthToken(session,  dispatch)
+        dispatch(fetchUsers())
+        dispatch(getPost(postId))
+        dispatch(getPosts())
+        dispatch(fetchComments(postId))
+    }, [postId, getPost, getPosts, fetchUsers, fetchComments, session])
+
 
     // from store
     const post = useSelector(s => s.post)
@@ -43,24 +52,6 @@ const Post = () => {
     const comments = useSelector(s => s.comments.comments)
 
 
-    console.log(comments)
-
-    useEffect(() => {
-        dispatch(fetchUsers())
-        dispatch(getPost(postId))
-        dispatch(getPosts())
-        dispatch(fetchComments(postId))
-    }, [postId, getPost, getPosts, fetchUsers, fetchComments, session])
-
-
-    // if session is down
-    if (!session) {
-        dispatch({type: LOGOUT})
-        if (localStorage.token) {
-            localStorage.removeItem('token')
-        }
-        return <Home/>
-    }
 
     const boldParagraph = (
         <div className={'bold-paragraph-article'}>
@@ -80,21 +71,20 @@ const Post = () => {
         </div>
     )
 
-    return (
-
-        <Fragment>
+    //RENDER
+    return <Fragment>
             <Layout user={session.user} singOut={() => signOut()}>
                 <Container content center col className={'article-container relative'}>
 
-
+                    {/* Title + Image */}
                     <div className={'title-article-container center col'}>
                         <Separator short/>
                         <h1>{capitalizeAllFirstLetters(title, 3)}</h1>
                         <p>{punctuation(body, 10)}</p>
                     </div>
-                    <img className={'big-image'} src={'main-image.png'} alt={'blog-image'}/>
+                    <img className={'big-image'} src={'/main-image.png'} alt={'blog-image'}/>
 
-
+                    {/*First Paragraph */}
                     <div className={'text-article-container col'}>
                         {infoAuthor}
                         <div className={'first-paragraph row'}>
@@ -109,49 +99,57 @@ const Post = () => {
                         <p></p>
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
-                    <img className={'medium-image'} src={'article-image.png'} alt={'blog-img'}/>
+                    <img className={'medium-image'} src={'/article-image.png'} alt={'blog-img'}/>
 
+                    {/*Second Paragraph*/}
                     <div className={'text-article-container col'}>
                         {boldParagraph}
                         <div className={'second-paragraph row'}>
                             <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body, 8)}</p>
                         </div>
-
                         <div className={'rest-text-article'}>
                         </div>
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                         <p></p>
                         <p className={'text'}>{punctuation(body)} {punctuation(body)} {punctuation(body)} {punctuation(body)}</p>
                     </div>
-                    <img src={'socials-counter.png'} alt={'socials counter'}/>
 
+                    <img src={'/socials-counter.png'} alt={'socials counter'}/>
 
-
+                    {/*Comments*/}
                     <Separator wide/>
                     <Container content className={'text-article-container'} col>
 
-                        <CommentForm postId={postId} addComment={addComment} dispatch={dispatch}/>
+                        <CommentForm postId={postId}
+                                     addComment={addComment}
+                                     dispatch={dispatch}/>
                         {
-                            comments.reverse().map(c => <CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId}/>)
+                            comments
+                                .reverse()
+                                .map(c => <Fragment key={c.id}><CommentItem id={c.id} name={c.name} email={c.email} text={c.body} postId={postId}/></Fragment>)
                         }
 
                     </Container>
                     <Separator wide/>
 
-
+                    {/*Related Articles*/}
                     <div className={'header-dashboard-container'}>
                         <Separator short/>
                         <h2>Related Articles</h2>
                     </div>
                     <div className={'articles-dashboard-container'}>
-                        {post.posts.filter(p => p.userId === author.id).slice(0, 3).map((p, key) => <Card router={router} id={p.id} title={p.title}
-                                                                      body={p.body}/>)}
+                        {post.posts
+                            .filter(p => p.userId === author.id)
+                            .slice(0, 3)
+                            .map((p, key) =>
+                            <Fragment key={key}><Card router={router} id={p.id} title={p.title} body={p.body}/></Fragment>)
+                        }
                     </div>
                 </Container>
             </Layout>
             }
         </Fragment>
-    )
+
 }
 
 Post.auth = true

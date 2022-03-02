@@ -1,18 +1,11 @@
 import {Fragment, useState} from 'react';
-import {Input, Button, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import Separator from "../layout/Separator";
-
-const useStyles = makeStyles({
-    margin: {
-       background: 'rose'
-    }
-})
+import Separator from "../../layout/Separator";
 
 const CommentForm = (props) => {
 
     const {postId, addComment, dispatch} = props
-    const classes = useStyles();
 
     const initialState = {
         name: '',
@@ -47,7 +40,6 @@ const CommentForm = (props) => {
                 method={'post'}
                 className='comment-form col'
                 onSubmit={e => onSubmit(e)}
-                c
             >
 
                 <input required name={'email'} placeholder={'Email'} value={comment.email} onChange={e => onChange(e)}/>

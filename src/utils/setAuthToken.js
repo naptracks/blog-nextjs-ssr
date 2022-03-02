@@ -1,4 +1,4 @@
-import {LOGOUT, USER_LOADED} from "../actions/types";
+import {LOGOUT, USER_LOADED} from "../redux/actions/types";
 
 
 const setAuthToken = (session, dispatch) => {
@@ -10,7 +10,7 @@ const setAuthToken = (session, dispatch) => {
         localStorage.removeItem('token')
         dispatch({type: LOGOUT})
     }
-    // log user out from all tabs if they log out in one tab
+    // log user out from all tabs if they're logged on more than one tab
     window.addEventListener('storage', () => {
         if (!localStorage.token) dispatch({type: LOGOUT});
     })

@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import Image from "next/image";
 import Container from "../layout/Container";
 
 const Footer = () => {
@@ -23,7 +24,7 @@ const Footer = () => {
                 <div className={'top-footer-container'}>
                     <Container content spaceBetween>
                         <div className={'marketing align-center'}>
-                            <img src={'message.png'} alt={'message'} width={'27px'} height={'20px'}/>
+                            <Image src={'/message.png'} alt={'message'} width={'27px'} height={'20px'}/>
                             <h4>RECEIVE 20% OFF YOUR FIRST PURCHASE</h4>
                         </div>
                         <form className={'email align-center'}>
@@ -36,7 +37,7 @@ const Footer = () => {
                 <div className={'bottom-footer-container'}>
                     <Container content>
                         <div className={'logo-footer-container'}>
-                            <img src={'logo-footer.png'} alt={'logo'}/>
+                            <img src={'/logo-footer.png'} alt={'logo'}/>
                         </div>
                         <div className={'footer-links-container'}>
                             {extraMenu(topBrands)}
@@ -48,7 +49,7 @@ const Footer = () => {
                 </div>
                 <div className={'socials-footer-container justify-center'}>
                     <Container content flexStart>
-                        <img src={'socials.png'} alt={'socials'}/>
+                        <img   src={'/socials.png'} alt={'socials'}/>
                         <p>Huckberry. All rights reserved.</p>
                     </Container>
                 </div>

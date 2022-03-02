@@ -1,7 +1,7 @@
 import axios from 'axios';
 //redux
-import {useStore} from '../helpers/store'
-import {LOGOUT} from "../actions/types";
+import {useStore} from '../redux/store'
+import {LOGOUT} from "../redux/actions/types";
 // next-auth
 import {getSession} from 'next-auth/react'
 

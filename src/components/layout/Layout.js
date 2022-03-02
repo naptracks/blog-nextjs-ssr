@@ -4,7 +4,7 @@ import Footer from "../ui/Footer";
 import Container from "../layout/Container";
 
 
-// Layout.jst provides a navbar and a main container
+// Layout.jst provides a navbar, footer and a main container
 
 const Layout = ({children, center, user, singOut}) => {
 
