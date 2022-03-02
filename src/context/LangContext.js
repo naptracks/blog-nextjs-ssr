@@ -1,6 +1,5 @@
 import {createContext, useContext, useState} from "react";
 import {db} from "../data/db";
-import {useRouter} from "next/router";
 
 
 //Contexts
@@ -24,7 +23,6 @@ export const useLangUpdate = () => {
 export const LangProvider = ({children}) => {
 
     const [lang, setLang] = useState('en-US');
-
     const updateLang = (locale) => {
         setLang(locale);
     }
@@ -37,7 +35,6 @@ export const LangProvider = ({children}) => {
                     {children}
                 </LangUpdateContext.Provider>
             </DataContext.Provider>
-
         </LangContext.Provider>
     )
 }

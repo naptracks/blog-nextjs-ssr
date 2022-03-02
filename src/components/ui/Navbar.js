@@ -11,12 +11,9 @@ import LocaleSwitcher from "./LocaleSwitcher";
 // COMPONENT: <Navbar/>
 
 const Navbar = ({user, signOut, data}) => {
+
     const [isOpen, setIsOpen] = useState(false)
     const router = useRouter()
-
-
-    console.log(data)
-    console.log(router.locale)
 
 
     // LEFT SIDE OF NAVBAR
@@ -38,12 +35,6 @@ const Navbar = ({user, signOut, data}) => {
 
 
     // RIGHT SIDE OF NAVBAR
-
-
-
-
-
-
     const rightSide = (
         <div className={'right-side-navbar-container'}>
             {user ?
@@ -55,7 +46,6 @@ const Navbar = ({user, signOut, data}) => {
             <img className={'img-right-side-navbar'} src={'/cart.png'} alt={'cart'}/>
         </div>
     )
-
 
     const fakeLinks = data.fakeLinks
         .map(fl => <h4 key={fl} className="fake-link">{fl.toUpperCase()}</h4>)
@@ -78,7 +68,6 @@ const Navbar = ({user, signOut, data}) => {
                 <div className={'navbar center'}>
                     {leftSide}
                     {logo}
-                    {/*<button onClick={langUpdate}>{lang}</button>*/}
                     <LocaleSwitcher/>
                     {rightSide}
                 </div>

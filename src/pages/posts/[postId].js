@@ -1,24 +1,24 @@
 import {useRouter} from 'next/router'
-import React, {Fragment, useEffect} from "react";
+import {Fragment, useEffect} from "react";
 //redux
 import {useDispatch, useSelector} from "react-redux";
 import {getPost, getPosts} from "../../redux/actions/post";
 import {fetchUsers} from "../../redux/actions/users";
-import {addComment} from "../../redux/actions/comment";
+import {addComment, fetchComments} from "../../redux/actions/comment";
 //components
 import Layout from "../../components/layout/Layout";
 import Container from "../../components/layout/Container";
+import {Avatar} from "@mui/material";
+import Separator from "../../components/layout/Separator";
+import Card from "../../components/ui/Card";
+import CommentForm from "../../components/ui/comments/CommentForm";
+import CommentItem from "../../components/ui/comments/CommentItem";
 //auth
 import {signOut, useSession} from "next-auth/react";
 //tools
 import {capitalizeAllFirstLetters, punctuation, bigLetter, chunkWords} from "../../utils/stringTools";
-import Separator from "../../components/layout/Separator";
-import {Avatar} from "@mui/material";
-import Card from "../../components/ui/Card";
-import CommentForm from "../../components/ui/comments/CommentForm";
-import {fetchComments} from "../../redux/actions/comment";
-import CommentItem from "../../components/ui/comments/CommentItem";
 import setAuthToken from "../../utils/setAuthToken";
+//context
 import {useData, useLangUpdate} from "../../context/LangContext";
 
 
@@ -34,7 +34,7 @@ const Post = () => {
     const locale = useLangUpdate()
 
 
-    // async + check token
+    // async: check token & locale
     useEffect(() => {
         locale(router.locale)
         setAuthToken(session,  dispatch)
@@ -42,7 +42,7 @@ const Post = () => {
         dispatch(getPost(postId))
         dispatch(getPosts())
         dispatch(fetchComments(postId))
-    }, [postId, getPost, getPosts, fetchUsers, fetchComments, session])
+    }, [router.locale, postId, getPost, getPosts, fetchUsers, fetchComments, session])
 
 
     // from store
@@ -57,7 +57,7 @@ const Post = () => {
     const comments = useSelector(s => s.comments.comments)
 
 
-
+    // components
     const boldParagraph = (
         <div className={'bold-paragraph-article'}>
             <h5>{punctuation(body, 5)}</h5>
