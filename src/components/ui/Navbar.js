@@ -10,20 +10,24 @@ import LocaleSwitcher from "./LocaleSwitcher";
 
 // COMPONENT: <Navbar/>
 
-const Navbar = ({user, signOut, data}) => {
+const Navbar = ({user, signOut, data, searchValue}) => {
     // settings
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
+    const [searching, setSearching] = useState(false)
     const pointer = {cursor: 'pointer'}
 
 
     // LEFT SIDE OF NAVBAR
     const leftSide = (
         <div className={'left-side-navbar-container'}>
-            <Image src={'/search.png'}  alt={'dehef-tech'} width={'30px'} height={'30px'}/>
-            <h4>{data.search.toUpperCase()}</h4>
+            <Image onClick={() => setSearching(!searching)} src={'/search.png'}  alt={'dehef-tech'} width={'30px'} height={'30px'}/>
+            { !searching ?
+                <h4>{data.search.toUpperCase()}</h4>
+                : <input className={'search-input'} value={searchValue} placeholder={data.search.toUpperCase()}/>}
         </div>
     )
+
 
 
     // CENTER OF NAVBAR: LOGO
@@ -39,7 +43,7 @@ const Navbar = ({user, signOut, data}) => {
             <img onClick={() => user && router.push('/posts', '/posts', {locale: router.locale})  } src={'/logo.png'} alt={'logo'}/>
             <div className={'row align-center'}>
                 <button style={pointer} className={'m-r-1'} onClick={() => setIsOpen(state => !state)}>
-                    {menu}   {/*<img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCA0OCA0OCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBmaWxsPSIjNjA3RDhCIiBkPSJNNiAyMkg0MlYyNkg2ek02IDEwSDQyVjE0SDZ6TTYgMzRINDJWMzhINnoiPjwvcGF0aD48L3N2Zz4="/>*/}
+                    {menu}
                 </button>
             </div>
         </div>

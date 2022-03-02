@@ -146,6 +146,26 @@ margin-left: 0;
 
 /* UI --- Navbar.js */
 
+.search-input {
+  border: none;
+  padding: 1rem;
+  width: 10rem;
+  background: $lightgray;
+  border-radius: 5px ;
+  animation: width .3s ease-out;
+  color: $dark;
+  ::placeholder {
+    font-family: Lora, sans-serif;
+    color: $gray;
+    font-size: 15px;
+  }
+}
+
+@keyframes width {
+  from {width: 0}
+  to {width: 10rem}
+}
+
 .navbar-container {
   width: 100%;
   background: white;

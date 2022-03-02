@@ -11,7 +11,7 @@ const Footer = ({data}) => {
     const extraMenu = (array) => (
         <div className={'extra-menu-footer'}>
             <h4>{array[0]}</h4>
-            {array.slice(1).map((link) => <p key={link}>{link}</p>)}
+            {array.slice(1).map((link) => <p  style={{cursor: 'pointer'}} key={link}>{link}</p>)}
         </div>
     )
 
