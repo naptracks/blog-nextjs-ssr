@@ -6,7 +6,6 @@ import {getPost, getPosts} from "../../redux/actions/post";
 import {fetchUsers} from "../../redux/actions/users";
 import {addComment, fetchComments} from "../../redux/actions/comment";
 //components
-import Image from "next/image";
 import Layout from "../../components/layout/Layout";
 import Container from "../../components/layout/Container";
 import {Avatar} from "@mui/material";
