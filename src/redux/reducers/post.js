@@ -10,7 +10,6 @@ const initialState = {
         title: ' ',
         userId: ' ',
     },
-    error: {}
 };
 
 export default function(state = initialState, action) {

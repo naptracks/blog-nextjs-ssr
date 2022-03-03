@@ -11,9 +11,6 @@ const DataContext = createContext();
 export const useData = () => {
     return useContext(DataContext)
 }
-export const useLang = () => {
-    return useContext(DataContext)
-}
 export const useLangUpdate = () => {
     return useContext(LangUpdateContext)
 }

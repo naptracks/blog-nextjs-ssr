@@ -11,10 +11,7 @@ export const fetchUsers = () => async dispatch => {
             payload: res.data
         })
     } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
+        console.log(err)
     }
 }
 
