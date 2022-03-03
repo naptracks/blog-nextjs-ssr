@@ -1,0 +1,139 @@
+/* Styles for tablet screen: from 1250px */
+@import "settings/_colors";
+
+@media (min-width: 810px) {
+
+
+
+  /**************** PAGES ****************/
+
+
+  /* PAGE --- Article [postId].js*/
+
+
+  .text-article-container {
+    width: 50%
+  }
+
+
+
+
+
+  /**************** UI ****************/
+
+  /* Navbar.js */
+
+  .menu-container {
+    align-items:  center;
+  }
+
+  /* Navbar.js */
+
+  .login-box {
+    width: 25rem;
+    border: solid 1px $lightgray;
+    border-radius: 5px;
+  }
+
+  .navbar {
+    padding: 0 6rem;
+  }
+
+  .left-side-navbar-container {
+  display: none;
+  }
+
+  .left-side-navbar-container img {
+    padding-right: 1.5rem !important;
+  }
+
+
+  .logo-container {
+    min-width: 50%;
+    justify-content: start;
+    button {
+      display: none;
+    }
+  }
+
+  .logo-container h4 {
+    display: none;
+  }
+
+  .right-side-navbar-container {
+    display: flex;
+    //width: 25%;
+    justify-content: flex-end;
+    align-items: center;
+
+    .img-right-side-navbar {
+      margin-left: 2rem;
+    }
+    h4 {
+      margin-right: 2rem;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .fake-links-container {
+    display: flex;
+    margin: auto;
+    width: 65%;
+    height: 4rem;
+  }
+  .fake-link {
+    margin: auto;
+  }
+  .fake-link:hover {
+    cursor: pointer;
+  }
+
+  .menu-container {
+    display: none !important;
+  }
+
+
+  /* Footer */
+
+  .socials-footer-container .content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .socials-footer-container {
+    width: 100%;
+    background-color: $ultra-lightgray;
+    img {
+      padding-bottom: 2rem;
+      margin-right: 2rem;
+    }
+    p {
+      margin: -2px 0 0 0;
+    }
+  }
+
+  .logo-footer-container {
+    align-items: flex-start;
+    width: 20rem;
+    height: 100%;
+    padding-top: 4.3rem;
+    display: flex;
+    //justify-content: center;
+    //align-items: center;
+  }
+
+  // Card
+
+  .card-container {
+    margin: 1rem;
+  }
+
+
+  // end of tablet styles
+}

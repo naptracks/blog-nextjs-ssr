@@ -1,0 +1,167 @@
+/* Styles for desktop screen: from 1250px */
+@import "settings/_colors";
+
+
+@media (min-width: 1300px) {
+
+  /**************** PAGE ****************/
+
+
+  // PAGE --- Article [postId].js
+
+  .info-author-article-container {
+    display: flex;
+    position: absolute;
+    margin-top: 1.5rem;
+    right: 0;
+    width: 11rem;
+    border: 1px solid $lightgray;
+    padding: 2rem 0;
+    p, h4 {
+      margin: 0;
+    }
+    p {
+      font-style: italic ;
+    }
+  }
+
+
+  .articles-dashboard-container {
+    justify-content: space-between;
+  }
+
+  .text-article-container {
+    width: 50%;
+  }
+
+  .article-container {
+    width: 1300px;
+
+  }
+
+  .second-paragraph {
+    margin-left: 10rem;
+  }
+
+  .bold-paragraph-article {
+    position: absolute;
+    left: 5rem;
+    width: 20rem;
+    border-left: 2px solid $orange;
+    padding-left: 2.5rem;
+  }
+
+  /**************** LAYOUT ****************/
+
+
+  .content {
+    width: 1300px;
+  }
+
+
+  /**************** UI ****************/
+
+
+  // Navbar
+  .left-side-navbar-container {
+    width: 25%;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start ;
+  }
+
+  .right-side-navbar-container {
+    width: 25%;
+
+  }
+
+
+  .logo-container {
+    justify-content: center !important;
+
+  }
+
+  .fake-links-container {
+    display: flex;
+    margin: auto;
+    max-width: 50%;
+    height: 4rem;
+  }
+
+  /* Footer */
+
+  .top-footer-container {
+
+    flex-direction: row !important;
+    padding: 2.5rem 0 !important;
+    form {
+      margin-left: 10rem;
+    }
+  }
+
+  .footer-links-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding-top: 3rem;
+    p {
+      font-size: 13px;
+      margin: 10px auto;
+    }
+  }
+
+
+  .top-footer-container {
+    display: flex;
+    width: 100%;
+  }
+
+  .marketing {
+    img {
+      margin-right: .75rem ;
+      margin-bottom: 2px;
+    }
+  }
+
+  .email {
+    input {
+      margin-right: 2rem;
+      width: 30rem;
+      height: 4rem;
+      border: 1px solid $lightgray;
+      padding-left: 1rem;
+    }
+    button {
+      height: 4rem;
+      border: 2px solid $dark;
+      background: none;
+      h4 {
+        padding: 0 3.5rem;
+        width: max-content;
+      }
+    }
+
+  }
+
+  .socials-footer-container .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start !important;
+  }
+
+  .bottom-footer-container {
+
+    padding-right: 1rem;
+
+  }
+
+  .logo-footer-container {
+    display: initial;
+    padding-left: .5rem;
+    justify-content: flex-start;
+  }
+
+
+
+  // end of Desktop Styles
+}
