@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
                 <Head>
                     <link rel="shortcut icon" href="/favicon.ico"/>
                     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+                    <link rel="preconnect" href="https://fonts.gstatic.com"/>
                     <link
                         href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=League+Spartan&family=Lora&display=swap"
                         rel="stylesheet"/>
