@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import {Fragment} from "react";
 import Navbar from "../ui/Navbar";
 import Footer from "../ui/Footer";
 import Container from "../layout/Container";

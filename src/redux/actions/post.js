@@ -1,7 +1,6 @@
 import {api} from '../../utils/api';
 import {
     GET_POSTS,
-    POST_ERROR,
     GET_POST,
 } from './types';
 
@@ -14,10 +13,7 @@ export const getPosts = () => async dispatch => {
             payload: res.data
         });
     } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
+        console.log(err)
     }
 };
 
@@ -31,10 +27,7 @@ export const getPost = id => async dispatch => {
             payload: res.data
         });
     } catch (err) {
-        dispatch({
-            type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
+       console.log(err)
     }
 };
 

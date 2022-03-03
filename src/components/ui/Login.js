@@ -1,34 +1,12 @@
-import {Fragment, useEffect, useState} from "react";
-//material ui
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import {Fragment} from "react";
+
 //components
 import Separator from "../layout/Separator";
-//actions
-import {login} from "../../redux/actions/auth";
-//redux
-import {useSelector, useDispatch} from "react-redux";
 
 
 // Login.js module
 
 const Login = ({signIn, data}) => {
-    //
-    // const [formData, setFormData] = useState({
-    //     email: '',
-    //     password: ''
-    // });
-    // const { email, password } = formData;
-
-    // const dispatch = useDispatch()
-
-    // const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // const onSubmit = e => {
-    //     e.preventDefault();
-    //     dispatch(login(email, password));
-    // };
 
     return (
         <Fragment>
@@ -36,34 +14,7 @@ const Login = ({signIn, data}) => {
                     <h1>{data.login}</h1>
                 <Separator short/>
 
-                {/*<Box*/}
-                {/*    component="form"*/}
-                {/*    sx={{*/}
-                {/*        '& .MuiTextField-root': { m: 1, width: '25ch' },*/}
-                {/*    }}*/}
-                {/*    noValidate*/}
-                {/*    autoComplete="off"*/}
-                {/*>*/}
-                {/*    <div className={'center col'}>*/}
-
-                {/*        <TextField*/}
-                {/*            label="email"*/}
-                {/*            type="email"*/}
-                {/*            name="email"*/}
-                {/*            value={email}*/}
-                {/*            onChange={e => onChange(e)}*/}
-                {/*        />*/}
-                {/*        <TextField*/}
-                {/*            label="password"*/}
-                {/*            type="password"*/}
-                {/*            name="password"*/}
-                {/*            value={password}*/}
-                {/*            onChange={e => onChange(e)}*/}
-                {/*        />*/}
-                {/*    </div>*/}
-                {/*</Box>*/}
                 <div className={'col center'}>
-                    {/*<Button type={'submit'} onClick={(e) => onSubmit(e)}>Connect</Button>*/}
                     <button className={'github-button'} onClick={() => signIn('github')}>{data.github}</button>
                     <button className={'facebook-button'} onClick={() => signIn('facebook')}>{data.facebook}</button>
                     <button className={'google-button'} onClick={() => signIn('google')}>{data.google}</button>
